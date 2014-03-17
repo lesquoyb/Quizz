@@ -13,8 +13,8 @@ public class Lance {
 
 	public static void main(String[] args) {
 
-		FenetreGestion f = new FenetreGestion();
-		//FenetreConnection f1 = new FenetreConnection();
+		//FenetreGestion f = new FenetreGestion();
+		FenetreConnection f1 = new FenetreConnection();
 		//FenetrePrincipale  f = new FenetrePrincipale();
 		
 	}

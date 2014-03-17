@@ -9,9 +9,9 @@ import java.sql.SQLException;
 public class MaConnection {
 
 
-	private final String url ="jdbc:mysql://localhost/desgorces2u_projetjava?profileSQL=true";
+	private final String url ="jdbc:mysql://localhost/desgorce2u_projetJava?profileSQL=true";
 	private final String utilisateur ="root";//"desgorce2u_appli";
-	private final String motDePasse ="";// "31208714";
+	private final String motDePasse = "";//"31208714";
 	private final String nomDriver = "com.mysql.jdbc.Driver";
 	private static Connection connection;
 	
