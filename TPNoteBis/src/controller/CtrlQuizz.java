@@ -11,8 +11,14 @@ public class CtrlQuizz implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+
+		String action= e.getActionCommand();
+		if (action.equals("Supprimer")){
+			
+		}
+		else if(action.equals("Valider"	)){
+			
+		}
 	}
 
 	public IFenetreGestion getVue() {

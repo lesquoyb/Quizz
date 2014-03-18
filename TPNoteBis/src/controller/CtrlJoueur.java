@@ -11,9 +11,14 @@ public class CtrlJoueur implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-		// test GIT
+
+		String action= arg0.getActionCommand();
+		if (action.equals("Supprimer")){
+			
+		}
+		else if(action.equals("Valider"	)){
+			
+		}
 		
 	}
 

@@ -74,6 +74,54 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 		}		
 	}
 
+	
+
+
+
+	@Override
+	public void supQuizzSelect() {
+		int[] selectionne = tabQuizz.getSelectedRows();
+		DefaultTableModel model = 	(DefaultTableModel) tabQuizz.getModel();
+		for(int i : selectionne){
+			model.removeRow(i);
+		}
+	}
+
+
+
+
+	@Override
+	public void supItemSelect() {
+		int[] selectionne = tabItem.getSelectedRows();
+		DefaultTableModel model = 	(DefaultTableModel) tabItem.getModel();
+		for(int i : selectionne){
+			model.removeRow(i);
+		}	
+	}
+
+
+
+	@Override
+	public void supQuestionSelect() {
+		int[] selectionne = tabQuestion.getSelectedRows();
+		DefaultTableModel model = 	(DefaultTableModel) tabQuestion.getModel();
+		for(int i : selectionne){
+			model.removeRow(i);
+		}	
+	}
+
+
+
+
+	@Override
+	public void supJoueurSelect() {
+		int[] selectionne = tabJoueur.getSelectedRows();
+		DefaultTableModel model = 	(DefaultTableModel) tabJoueur.getModel();
+		for(int i : selectionne){
+			model.removeRow(i);
+		}			
+	}
+
 
 
 
