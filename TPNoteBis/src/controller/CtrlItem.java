@@ -14,7 +14,7 @@ public class CtrlItem implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String action= e.getActionCommand();
 		if (action.equals("Supprimer")){
-			
+			vue.supItemSelect();
 		}
 		else if(action.equals("Valider"	)){
 			

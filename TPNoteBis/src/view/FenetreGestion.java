@@ -11,6 +11,10 @@ import model.dao.DAOItem;
 import model.dao.MaConnection;
 import model.metier.Item;
 import view.interfaces.IFenetreGestion;
+import view.modelTable.ModelTableItem;
+import view.modelTable.ModelTableJoueur;
+import view.modelTable.ModelTableQuestion;
+import view.modelTable.ModelTableQuizz;
 import controller.CtrlItem;
 import controller.CtrlJoueur;
 import controller.CtrlQuestion;
@@ -28,9 +32,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 	private CtrlQuizz controleurQuizz;
 	private CtrlQuestion controleurQuestion;
 	
-    /**
-     * Creates new form NewJFrame
-     */
+
     public FenetreGestion() {
 
     	controleurQuestion = new CtrlQuestion();
@@ -103,11 +105,8 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 
 	@Override
 	public void supQuestionSelect() {
-		int[] selectionne = tabQuestion.getSelectedRows();
-		DefaultTableModel model = 	(DefaultTableModel) tabQuestion.getModel();
-		for(int i : selectionne){
-			model.removeRow(i);
-		}	
+		panQuestion.supSelect();
+	
 	}
 
 
@@ -164,41 +163,11 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
         mail = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btnSupprimerJoueur = new javax.swing.JButton();
-        panQuestion = new javax.swing.JPanel();
-        panScrollQuestion = new javax.swing.JScrollPane();
-        tabQuestion = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        reponseQuestion = new javax.swing.JTextField();
-        btnValiderQuestion = new javax.swing.JButton();
-        btnSupprimerQuestion = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        texte = new javax.swing.JTextArea();
+        panQuestion = new PanelTableQuestion(controleurQuestion);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tabQuizz.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {  },
-            new String [] {
-                "code_quizz", "date_quizz", "nb_question_quizz", "code_joueur"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        tabQuizz.setModel(new ModelTableQuizz());
         tabQuizz.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tabQuizz);
 
@@ -282,27 +251,8 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 
         onglets.addTab("Quizz", null, panQuizz, "gestion des quizz");
 
-        tabItem.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {             },
-            new String [] {
-                "code_question", "code_quizz", "reponse_joueur"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        tabItem.setModel(new ModelTableItem());
+        
         panScrollItem.setViewportView(tabItem);
 
         jLabel4.setText("reponse");
@@ -312,10 +262,10 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
         jLabel6.setText("code question");
 
         btnSupprimerItem.setText("Supprimer");
-        btnSupprimerItem.setToolTipText("supprime la ligne selectionnÃ©e");
+        btnSupprimerItem.setToolTipText("supprime la ligne selectionnée");
 
         btnValiderItem.setText("Valider");
-        btnValiderItem.setToolTipText("valide les informations entrÃ©s");
+        btnValiderItem.setToolTipText("valide les informations entrées");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -387,27 +337,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 
         onglets.addTab("Items", null, panItem, "gestion des items");
 
-        tabJoueur.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {        },
-            new String [] {
-                "code_joueur", "nom_joueur", "mail_joueur", "passwd_joueur"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        tabJoueur.setModel(new ModelTableJoueur());
         panScrollJoueur.setViewportView(tabJoueur);
 
         jLabel7.setText("mail joueur");
@@ -492,105 +422,10 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 
         onglets.addTab("Joueurs", null, panJoueur, "gestion des joueurs");
 
-        tabQuestion.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {     },
-            new String [] {
-                "code_question", "texte_question", "reponse_question"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        panScrollQuestion.setViewportView(tabQuestion);
 
-        jLabel10.setText("énoncé de la question:");
-
-        jLabel11.setText("réponse");
-
-        btnValiderQuestion.setText("Valider");
-        btnValiderQuestion.setToolTipText("valide les informations entrées");
-        btnValiderQuestion.addActionListener(controleurQuestion);
-
-        btnSupprimerQuestion.setText("Supprimer");
-        btnSupprimerQuestion.setToolTipText("supprime la ligne selectionnée");
-        btnSupprimerQuestion.addActionListener(controleurQuestion);
-
-        texte.setColumns(20);
-        texte.setRows(5);
-        jScrollPane2.setViewportView(texte);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnValiderQuestion)
-                        .addGap(76, 76, 76))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSupprimerQuestion, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reponseQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(361, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(reponseQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnValiderQuestion)
-                    .addComponent(btnSupprimerQuestion))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout panQuestionLayout = new javax.swing.GroupLayout(panQuestion);
-        panQuestion.setLayout(panQuestionLayout);
-        panQuestionLayout.setHorizontalGroup(
-            panQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panQuestionLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(panQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panScrollQuestion)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        panQuestionLayout.setVerticalGroup(
-            panQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panQuestionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panScrollQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+      
 
         onglets.addTab("Questions", null, panQuestion, "gestion des questions");
 
@@ -624,17 +459,13 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
     private javax.swing.JButton btnSupprimer;
     private javax.swing.JButton btnSupprimerItem;
     private javax.swing.JButton btnSupprimerJoueur;
-    private javax.swing.JButton btnSupprimerQuestion;
     private javax.swing.JButton btnValider;
     private javax.swing.JButton btnValiderItem;
     private javax.swing.JButton btnValiderJoueur;
-    private javax.swing.JButton btnValiderQuestion;
     private javax.swing.JTextField codeQuestion;
     private javax.swing.JTextField codeQuizz;
     private javax.swing.JTextField date;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -648,7 +479,6 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField mail;
     private javax.swing.JTextField mdp;
     private javax.swing.JTextField nbQuestion;
@@ -657,17 +487,13 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
     private javax.swing.JTabbedPane onglets;
     private javax.swing.JPanel panItem;
     private javax.swing.JPanel panJoueur;
-    private javax.swing.JPanel panQuestion;
+    private PanelTableQuestion panQuestion;
     private javax.swing.JPanel panQuizz;
     private javax.swing.JScrollPane panScrollItem;
     private javax.swing.JScrollPane panScrollJoueur;
-    private javax.swing.JScrollPane panScrollQuestion;
     private javax.swing.JTextField reponseJoueur;
-    private javax.swing.JTextField reponseQuestion;
     private javax.swing.JTable tabItem;
     private javax.swing.JTable tabJoueur;
-    private javax.swing.JTable tabQuestion;
     private javax.swing.JTable tabQuizz;
-    private javax.swing.JTextArea texte;
     // End of variables declaration//GEN-END:variables
 }
