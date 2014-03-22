@@ -1,5 +1,5 @@
 package view.interfaces;
 
-public interface IPanelTableJoueur {
+public interface IPanelTableJoueur extends IPanelTable{
 
 }

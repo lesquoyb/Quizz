@@ -14,7 +14,9 @@ import controller.CtrlJoueur;
 public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
 
 
-    private JButton btnSupprimerJoueur;
+
+
+	private JButton btnSupprimerJoueur;
     private JButton btnValiderJoueur;
     private JScrollPane panScrollJoueur;
     private JTable tabJoueur;
@@ -123,4 +125,18 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
                     .addContainerGap(196, Short.MAX_VALUE)))
         );
 	}
+	
+	
+    @Override
+	public void rafraichirTable() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JTable getTable() {
+		return tabJoueur;
+	}
+	
+	
 }

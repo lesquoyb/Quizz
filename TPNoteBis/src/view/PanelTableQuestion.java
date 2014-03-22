@@ -126,4 +126,16 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 			model.removeRow(i);
 		}	
 	}
+
+	@Override
+	public void rafraichirTable() {
+		
+	}
+
+	@Override
+	public JTable getTable() {
+		return tabQuestion;
+	}
+	
+	
 }

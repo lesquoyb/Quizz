@@ -1,17 +1,13 @@
 
 package view;
 
-import java.sql.SQLException;
-
+import javax.swing.GroupLayout;
 import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import model.dao.DAOItem;
-import model.dao.MaConnection;
-import model.metier.Item;
 import view.interfaces.IFenetreGestion;
-import view.modelTable.ModelTableItem;
 import controller.CtrlItem;
 import controller.CtrlJoueur;
 import controller.CtrlQuestion;
@@ -28,6 +24,11 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 	private CtrlJoueur controleurJoueur;
 	private CtrlQuizz controleurQuizz;
 	private CtrlQuestion controleurQuestion;
+    private JTabbedPane onglets;
+    private PanelTableItem panItem;
+    private PanelTableJoueur panJoueur;
+    private PanelTableQuestion panQuestion;
+    private PanelTableQuizz panQuizz;
 	
 
     public FenetreGestion() {
@@ -52,7 +53,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
     
     @Override
 	public JTable getTableItem() {
-		return tabItem;
+    	return panItem.getTable();
 	}
 
 
@@ -61,6 +62,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 
 	@Override
 	public void majTabItem() {
+		/*
 		try {
 			DAOItem i = new DAOItem(MaConnection.getInstance());
 			DefaultTableModel model = (DefaultTableModel) tabItem.getModel();
@@ -70,6 +72,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}		
+		*/
 	}
 
 	
@@ -78,11 +81,13 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 
 	@Override
 	public void supQuizzSelect() {
+		/*
 		int[] selectionne = tabQuizz.getSelectedRows();
 		DefaultTableModel model = 	(DefaultTableModel) tabQuizz.getModel();
 		for(int i : selectionne){
 			model.removeRow(i);
 		}
+		*/
 	}
 
 
@@ -90,11 +95,13 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 
 	@Override
 	public void supItemSelect() {
+		/*
 		int[] selectionne = tabItem.getSelectedRows();
 		DefaultTableModel model = 	(DefaultTableModel) tabItem.getModel();
 		for(int i : selectionne){
 			model.removeRow(i);
 		}	
+		*/
 	}
 
 
@@ -102,7 +109,6 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 	@Override
 	public void supQuestionSelect() {
 		panQuestion.supSelect();
-	
 	}
 
 
@@ -110,11 +116,13 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 
 	@Override
 	public void supJoueurSelect() {
+		/*
 		int[] selectionne = tabJoueur.getSelectedRows();
 		DefaultTableModel model = 	(DefaultTableModel) tabJoueur.getModel();
 		for(int i : selectionne){
 			model.removeRow(i);
 		}			
+		*/
 	}
 
 
@@ -122,45 +130,34 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 
 	private void initComponents() {
 
-        onglets = new javax.swing.JTabbedPane();
-        panQuizz = new javax.swing.JPanel();
-     
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        onglets = new JTabbedPane();
+        
+        panQuizz = new PanelTableQuizz(controleurQuizz);
         panItem = new PanelTableItem(controleurItem);
-
         panJoueur = new PanelTableJoueur(controleurJoueur);
-
-   
         panQuestion = new PanelTableQuestion(controleurQuestion);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
 
         onglets.addTab("Quizz", null, panQuizz, "gestion des quizz");
-        
         onglets.addTab("Items", null, panItem, "gestion des items");
-
-
         onglets.addTab("Joueurs", null, panJoueur, "gestion des joueurs");
-
-
-
-
-      
-
         onglets.addTab("Questions", null, panQuestion, "gestion des questions");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(onglets)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(onglets)
                 .addContainerGap())
@@ -175,12 +172,6 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
  
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
  
-    private javax.swing.JTabbedPane onglets;
-    private PanelTableItem panItem;
-    private PanelTableJoueur panJoueur;
-    private PanelTableQuestion panQuestion;
-    private javax.swing.JPanel panQuizz;
-    // End of variables declaration//GEN-END:variables
+
 }

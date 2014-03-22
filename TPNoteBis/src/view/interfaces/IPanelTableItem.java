@@ -1,5 +1,5 @@
 package view.interfaces;
 
-public interface IPanelTableItem {
+public interface IPanelTableItem  extends IPanelTable{
 
 }

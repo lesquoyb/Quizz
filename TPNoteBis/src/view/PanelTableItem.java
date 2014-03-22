@@ -7,14 +7,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import view.interfaces.IPanelTableItem;
 import view.modelTable.ModelTableItem;
 import controller.CtrlItem;
 
-public class PanelTableItem extends JPanel{
+public class PanelTableItem extends JPanel implements IPanelTableItem{
 
 	
 
-    private JButton btnSupprimerItem;
+
+
+	private JButton btnSupprimerItem;
     private JButton btnValiderItem;
     private JTextField codeQuestion;
     private JTextField codeQuizz;
@@ -125,5 +128,17 @@ public class PanelTableItem extends JPanel{
                     .addComponent(panScrollItem, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(196, Short.MAX_VALUE)))
         );
+	}
+	
+	
+    @Override
+	public void rafraichirTable() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JTable getTable() {
+		return tabItem;
 	}
 }

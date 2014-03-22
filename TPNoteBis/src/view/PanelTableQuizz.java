@@ -1,5 +1,6 @@
 package view;
 
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,22 +23,26 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 
     private JTextField numero;
     private JTextField date;
-    private JLabel jLabel2;
-    private JLabel jLabel3;
-
-   private JLabel labDate;
+    private JLabel labNbQuestion;
+    private JLabel labNumJoueur;
+    private JLabel labDate;
 
 	
 	public PanelTableQuizz(CtrlQuizz controleurQuizz){
-		labDate = new JLabel();
+		labDate = new JLabel("date");
+		labNbQuestion = new JLabel("nombre de questions");
+        labNumJoueur = new JLabel("numero joueur");
 		btnValider = new JButton();
 		btnSupprimer = new JButton();
 		tabQuizz = new JTable();
         tabQuizz.setModel(new ModelTableQuizz());
         tabQuizz.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scrollPane1 = new JScrollPane();
         scrollPane1.setViewportView(tabQuizz);
-
-
+        jPanel1 = new JPanel();
+        date = new JTextField();
+        numero = new JTextField();
+        nbQuestion = new JTextField();
         btnValider.setText("Valider");
         btnValider.setToolTipText("valide les informations entrés");
         btnValider.addActionListener(controleurQuizz);
@@ -46,31 +51,29 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
         btnSupprimer.setToolTipText("supprime la ligne selectionnée");
         btnSupprimer.addActionListener(controleurQuizz);
 
-        labDate.setText("date");
 
-        jLabel2.setText("nombre de questions");
 
-        jLabel3.setText("numero joueur");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        
+        
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(284, 284, 284)
                         .addComponent(labDate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(date, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel2)
+                        .addComponent(labNbQuestion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nbQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nbQuestion, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
+                        .addComponent(labNumJoueur)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(numero, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(383, 383, 383)
                         .addComponent(btnValider)
@@ -79,41 +82,41 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
                 .addContainerGap(375, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nbQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nbQuestion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(labDate)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(labNbQuestion)
+                    .addComponent(labNumJoueur))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValider)
                     .addComponent(btnSupprimer))
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout panQuizzLayout = new javax.swing.GroupLayout(this);
+        GroupLayout panQuizzLayout = new GroupLayout(this);
         this.setLayout(panQuizzLayout);
         panQuizzLayout.setHorizontalGroup(
-            panQuizzLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panQuizzLayout.createSequentialGroup()
+            panQuizzLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(GroupLayout.Alignment.TRAILING, panQuizzLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(scrollPane1)
                 .addContainerGap())
                 
         );
         panQuizzLayout.setVerticalGroup(
-            panQuizzLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            panQuizzLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(panQuizzLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 389,GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -126,4 +129,13 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 	public void rafraichirTable() {
 		
 	}
+
+
+	@Override
+	public JTable getTable() {
+		// TODO Auto-generated method stub
+		return tabQuizz;
+	}
+	
+	
 }
