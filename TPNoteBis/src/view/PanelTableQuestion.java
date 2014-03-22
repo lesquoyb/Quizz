@@ -11,10 +11,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import view.interfaces.IPanelTableQuestion;
 import view.modelTable.ModelTableQuestion;
 import controller.CtrlQuestion;
 
-public class PanelTableQuestion extends JPanel {
+public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 
 	private JPanel panelSaisie;
 	private JScrollPane panScroll;
@@ -111,14 +112,11 @@ public class PanelTableQuestion extends JPanel {
 	                .addComponent(panScroll, GroupLayout.PREFERRED_SIZE, 388, GroupLayout.PREFERRED_SIZE)
 	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 	                .addComponent(panelSaisie, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                .addContainerGap())
-	        );
+	                .addContainerGap()));
 
 	        panScroll.setViewportView(tabQuestion);
 	        panelSaisie.add(scrollTexte);
 	        this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
-	        this.add(panScroll);
-	        //this.add(panelSaisie);
 	}
 	
 	public void supSelect(){
