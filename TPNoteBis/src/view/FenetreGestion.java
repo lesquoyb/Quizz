@@ -38,6 +38,8 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
         majTableaux();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.setVisible(false);
+        this.setVisible(true);
     }
 
 
