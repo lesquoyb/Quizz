@@ -31,7 +31,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
     private PanelTableQuizz panQuizz;
     private Connection connection;
 	
-
+// commentaire inutile
     public FenetreGestion(Connection con) {
     	connection = con;
         initComponents();
