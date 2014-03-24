@@ -1,11 +1,11 @@
 
 package view;
 
+import java.sql.Connection;
+
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import view.interfaces.IFenetreGestion;
 import controller.CtrlItem;
@@ -29,103 +29,16 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
     private PanelTableJoueur panJoueur;
     private PanelTableQuestion panQuestion;
     private PanelTableQuizz panQuizz;
+    private Connection connection;
 	
 
-    public FenetreGestion() {
-
-    	controleurQuestion = new CtrlQuestion();
-    	controleurQuestion.setVue(this);
-        controleurItem = new CtrlItem();
-        controleurItem.setVue(this);
-        controleurJoueur = new CtrlJoueur();
-        controleurJoueur.setVue(this);
-        controleurQuizz = new CtrlQuizz();
-        controleurQuizz.setVue(this);
-        
+    public FenetreGestion(Connection con) {
+    	connection = con;
         initComponents();
-        majTabItem();
+        majTableaux();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-
-
-    
-    
-    @Override
-	public JTable getTableItem() {
-    	return panItem.getTable();
-	}
-
-
-    
-
-
-	@Override
-	public void majTabItem() {
-		/*
-		try {
-			DAOItem i = new DAOItem(MaConnection.getInstance());
-			DefaultTableModel model = (DefaultTableModel) tabItem.getModel();
-			for(Item item : i.listeItem()){
-				model.addRow(new String[]{String.valueOf(item.getCodeQuestion()),String.valueOf(item.getCodeQuizz()),item.getReponseJoueur()});
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}		
-		*/
-	}
-
-	
-
-
-
-	@Override
-	public void supQuizzSelect() {
-		/*
-		int[] selectionne = tabQuizz.getSelectedRows();
-		DefaultTableModel model = 	(DefaultTableModel) tabQuizz.getModel();
-		for(int i : selectionne){
-			model.removeRow(i);
-		}
-		*/
-	}
-
-
-
-
-	@Override
-	public void supItemSelect() {
-		/*
-		int[] selectionne = tabItem.getSelectedRows();
-		DefaultTableModel model = 	(DefaultTableModel) tabItem.getModel();
-		for(int i : selectionne){
-			model.removeRow(i);
-		}	
-		*/
-	}
-
-
-
-	@Override
-	public void supQuestionSelect() {
-		panQuestion.supSelect();
-	}
-
-
-
-
-	@Override
-	public void supJoueurSelect() {
-		/*
-		int[] selectionne = tabJoueur.getSelectedRows();
-		DefaultTableModel model = 	(DefaultTableModel) tabJoueur.getModel();
-		for(int i : selectionne){
-			model.removeRow(i);
-		}			
-		*/
-	}
-
-
 
 
 	private void initComponents() {
@@ -166,9 +79,31 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
         onglets.getAccessibleContext().setAccessibleName("");
         onglets.getAccessibleContext().setAccessibleDescription("gestion des quizz");
 
+
+    	controleurQuestion = new CtrlQuestion();
+    	controleurQuestion.setVue(panQuestion);
+        controleurItem = new CtrlItem(connection);
+        controleurItem.setVue(panItem);
+        controleurJoueur = new CtrlJoueur();
+        controleurJoueur.setVue(panJoueur);
+        controleurQuizz = new CtrlQuizz();
+        controleurQuizz.setVue(panQuizz);
         pack();
     }
 
+
+
+
+	@Override
+	public void majTableaux() {
+		panItem.rafraichirTable();
+		panJoueur.rafraichirTable();
+		panQuestion.rafraichirTable();
+		panQuizz.rafraichirTable();
+	}
+
+	
+	
  
 
 

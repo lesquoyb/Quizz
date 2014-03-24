@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -26,6 +27,7 @@ public class DAOJoueur extends DAO<Joueur> {
 	 * @param code
 	 * @return
 	 */
+	@Override
 	public Joueur get(int code) {
 		String requete = "SELECT * FROM joueur WHERE code_joueur =?";
 		Joueur retour = null;
@@ -85,15 +87,16 @@ public class DAOJoueur extends DAO<Joueur> {
 	 * Verifie d'abord si le code est correct.
 	 * @param j
 	 */
-	public void supprimerJoueur(Joueur j){
-		if (j != null && j.getCode() != -1){
+	@Override
+	public void delete(Joueur objet){
+		if (objet != null && objet.getCode() != -1){
 			DAOQuizz q = new DAOQuizz(connection);
 			try {
 				connection.setAutoCommit(false);
-				q.supprimerQuizzJoueur(j);
+				q.supprimerQuizzJoueur(objet);
 				String requete ="DELETE FROM joueur WHERE code_joueur=?";
 				PreparedStatement prep = connection.prepareStatement(requete);
-				prep.setInt(1, j.getCode());
+				prep.setInt(1, objet.getCode());
 				prep.executeUpdate();
 				fermerStatement(prep);
 				 if (JOptionPane.showConfirmDialog(null,"Êtes vous sur de vouloir supprimer ce joueur ainsi que les quizz qu'il a effectué?","joueur trouvé",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
@@ -109,6 +112,20 @@ public class DAOJoueur extends DAO<Joueur> {
 			}
 
 		}
+	}
+
+
+	@Override
+	public ArrayList<Joueur> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void insert(Joueur objet) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 

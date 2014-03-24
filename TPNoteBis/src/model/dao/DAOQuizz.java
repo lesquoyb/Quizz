@@ -19,16 +19,17 @@ public class DAOQuizz extends DAO<Quizz>{
 	}
 	
 	
-	private void insert(Quizz q) throws SQLException{
+	@Override
+	public void insert(Quizz objet) throws SQLException{
 		String requete = "INSERT INTO quizz (date_quizz,nb_questions_quizz,code_joueur) VALUES(?,?,?)";
 			PreparedStatement prep = connection.prepareStatement(requete,Statement.RETURN_GENERATED_KEYS);
-			prep.setDate(1, q.getDate());
-			prep.setInt(2, q.getNombreQuestion());
-			prep.setInt(3, q.getJoueur().getCode());
+			prep.setDate(1, objet.getDate());
+			prep.setInt(2, objet.getNombreQuestion());
+			prep.setInt(3, objet.getJoueur().getCode());
 			prep.executeUpdate();
 			ResultSet res = prep.getGeneratedKeys();
 			res.next();
-			q.setCode(res.getInt(1));
+			objet.setCode(res.getInt(1));
 			fermerStatement(prep);
 	}
 
@@ -77,6 +78,27 @@ public class DAOQuizz extends DAO<Quizz>{
 			e.printStackTrace();
 		}
 		
+		
+	}
+
+
+	@Override
+	public Quizz get(int code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ArrayList<Quizz> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void delete(Quizz objet) throws SQLException {
+		// TODO Auto-generated method stub
 		
 	}
 	

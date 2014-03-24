@@ -4,10 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import view.interfaces.IFenetreGestion;
+import view.interfaces.IPanelTableQuestion;
 
 public class CtrlQuestion implements ActionListener {
 
-	private IFenetreGestion vue;
+	private IPanelTableQuestion vue;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -21,11 +22,11 @@ public class CtrlQuestion implements ActionListener {
 		}
 	}
 
-	public IFenetreGestion getVue() {
+	public IPanelTableQuestion getVue() {
 		return vue;
 	}
 
-	public void setVue(IFenetreGestion vue) {
+	public void setVue(IPanelTableQuestion vue) {
 		this.vue = vue;
 	}
 

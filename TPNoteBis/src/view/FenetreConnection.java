@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -8,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import model.dao.MaConnection;
 
@@ -46,7 +44,8 @@ public class FenetreConnection extends JFrame {
 			}
 		}
 
-		FenetrePrincipale f = new FenetrePrincipale(connection);
+
+		FenetreGestion f = new FenetreGestion(connection);
 		this.dispose();
 	}
 

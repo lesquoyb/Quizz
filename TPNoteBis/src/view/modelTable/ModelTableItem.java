@@ -1,6 +1,10 @@
 package view.modelTable;
 
+import java.util.ArrayList;
+
 import javax.swing.table.DefaultTableModel;
+
+import model.metier.Item;
 
 public class ModelTableItem extends DefaultTableModel{
 

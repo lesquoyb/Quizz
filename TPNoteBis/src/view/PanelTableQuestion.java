@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 import javax.swing.table.DefaultTableModel;
 
 import view.interfaces.IPanelTableQuestion;
@@ -65,14 +66,14 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
                         .addGap(76, 76, 76))
                     .addGroup(panelSaisieLayout.createSequentialGroup()
                         .addComponent(label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)))
                 .addGroup(panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(btnSupprimerQuestion, GroupLayout.Alignment.TRAILING)
                     .addGroup(GroupLayout.Alignment.TRAILING, panelSaisieLayout.createSequentialGroup()
                         .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(reponseQuestion, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(361, Short.MAX_VALUE))
         );
@@ -86,7 +87,7 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
                         .addComponent(reponseQuestion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11))
                     .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValiderQuestion)
                     .addComponent(btnSupprimerQuestion))
@@ -110,7 +111,7 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 	            .addGroup(panQuestionLayout.createSequentialGroup()
 	                .addContainerGap()
 	                .addComponent(panScroll, GroupLayout.PREFERRED_SIZE, 388, GroupLayout.PREFERRED_SIZE)
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 	                .addComponent(panelSaisie, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	                .addContainerGap()));
 

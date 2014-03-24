@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.metier.Item;
-import model.metier.Question;
 
 public class DAOItem extends DAO<Item> {
 
@@ -17,19 +16,21 @@ public class DAOItem extends DAO<Item> {
 		super(con);
 	}
 
-	public void insert(Item i) throws SQLException{
+	@Override
+	public void insert(Item objet) throws SQLException{
 		String requete = "INSERT INTO item (code_question,code_quizz,reponse_joueur) VALUES(?,?,?)";
 		PreparedStatement prep = connection.prepareStatement(requete);
-		prep.setInt(1, i.getCodeQuestion());
-		prep.setInt(2, i.getCodeQuizz());
-		prep.setString(3, i.getReponseJoueur());
+		prep.setInt(1, objet.getCodeQuestion());
+		prep.setInt(2, objet.getCodeQuizz());
+		prep.setString(3, objet.getReponseJoueur());
 		prep.executeUpdate();
 		fermerStatement(prep);
 
 		
 	}
 	
-	public ArrayList<Item> listeItem(){
+	@Override
+	public ArrayList<Item> getAll(){
 		ArrayList<Item>liste= new ArrayList<Item>();
 		String requete = "SELECT * FROM item";
 		try {
@@ -49,5 +50,19 @@ public class DAOItem extends DAO<Item> {
 		}
 		return liste;
 	}
+
+	@Override
+	public Item get(int code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Item objet) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 	
 }

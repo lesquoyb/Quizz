@@ -19,6 +19,7 @@ public class DAOQuestion extends DAO<Question> {
 	 * @param code
 	 * @return
 	 */
+	@Override
 	public Question get(int code) {
 		String requete = "SELECT * FROM question WHERE code_question =?";
 		Question retour = null;
@@ -72,7 +73,8 @@ public class DAOQuestion extends DAO<Question> {
 	 * Retourne une liste contenant toutes les questions de la bdd.
 	 * @return
 	 */
-	public ArrayList<Question> listeQuestion(){
+	@Override
+	public ArrayList<Question> getAll(){
 		ArrayList<Question>liste= new ArrayList<Question>();
 		String requete = "SELECT * FROM question";
 		try {
@@ -98,27 +100,41 @@ public class DAOQuestion extends DAO<Question> {
 	 * @return
 	 */
 	public int nombreQuestions(){
-		return listeQuestion().size();
+		String requete = "SELECT COUNT(*) FROM question";
+		int retour = 0;
+		try{
+			PreparedStatement prep = connection.prepareStatement(requete);
+			ResultSet res = prep.executeQuery();
+			if (res.next()){
+				retour = res.getInt(1);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return retour;
 	}
 	
 	/**
 	 * Ajoute un objet de type Question à la base de données.
 	 * @param objet
 	 */
-	public void insert(Question objet) {
+	@Override
+	public void insert(Question objet) throws SQLException {
 		String requete = "INSERT INTO question (texte_question,reponse_question) VALUES(?,?)";
-		try {
-			PreparedStatement prep = connection.prepareStatement(requete);
-			prep.setString(1, objet.getTexte());
-			prep.setString(2, objet.getReponse());
-			prep.executeUpdate();
-			objet.setCode(listeQuestion(objet.getTexte()).get(0).getCode());
-			fermerStatement(prep);
+		PreparedStatement prep = connection.prepareStatement(requete);
+		prep.setString(1, objet.getTexte());
+		prep.setString(2, objet.getReponse());
+		prep.executeUpdate();
+		objet.setCode(listeQuestion(objet.getTexte()).get(0).getCode());
+		fermerStatement(prep);
+	}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	@Override
+	public void delete(Question objet) throws SQLException {
+		// TODO Auto-generated method stub
 		
 	}
+	
 
 }

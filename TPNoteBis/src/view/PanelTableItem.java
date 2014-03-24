@@ -1,12 +1,17 @@
 package view;
 
+import java.util.ArrayList;
+
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 
+import model.metier.Item;
 import view.interfaces.IPanelTableItem;
 import view.modelTable.ModelTableItem;
 import controller.CtrlItem;
@@ -38,11 +43,11 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
         jLabel4 = new JLabel();
         jLabel5 = new JLabel();
         jLabel6 = new JLabel();
-        btnSupprimerItem = new javax.swing.JButton();
-        codeQuestion = new javax.swing.JTextField();
-        codeQuizz = new javax.swing.JTextField();
-        reponseJoueur = new javax.swing.JTextField();
-        btnValiderItem = new javax.swing.JButton();
+        btnSupprimerItem = new JButton();
+        codeQuestion = new JTextField();
+        codeQuizz = new JTextField();
+        reponseJoueur = new JTextField();
+        btnValiderItem = new JButton();
 
         this.btnSupprimerItem.addActionListener(controleurItem);
         tabItem.setModel(new ModelTableItem());
@@ -61,25 +66,25 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
         btnValiderItem.setText("Valider");
         btnValiderItem.setToolTipText("valide les informations entrées");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(248, 248, 248)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(codeQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(codeQuestion, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(codeQuizz, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(codeQuizz, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reponseJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(reponseJoueur, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(363, 363, 363)
                         .addComponent(btnValiderItem)
@@ -88,44 +93,44 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
                 .addContainerGap(358, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codeQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(codeQuizz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(reponseJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(codeQuestion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codeQuizz, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reponseJoueur, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValiderItem)
                     .addComponent(btnSupprimerItem))
                 .addGap(36, 36, 36))
         );
 
-        javax.swing.GroupLayout panItemLayout = new javax.swing.GroupLayout(this);
+        GroupLayout panItemLayout = new GroupLayout(this);
         this.setLayout(panItemLayout);
         panItemLayout.setHorizontalGroup(
-            panItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            panItemLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panItemLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(panItemLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panScrollItem, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE)
+                    .addComponent(panScrollItem, GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         panItemLayout.setVerticalGroup(
-            panItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panItemLayout.createSequentialGroup()
+            panItemLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, panItemLayout.createSequentialGroup()
                 .addContainerGap(429, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(panItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panItemLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(panItemLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panScrollItem, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panScrollItem, GroupLayout.PREFERRED_SIZE, 389, GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(196, Short.MAX_VALUE)))
         );
 	}
@@ -141,4 +146,20 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
 	public JTable getTable() {
 		return tabItem;
 	}
+
+
+	@Override
+	public ArrayList<Item> getSelection() {
+		int[] selected = tabItem.getSelectedRows();
+		ArrayList<Item>listeRetour = new ArrayList<Item>();
+		for (int i : selected){
+			int code_question = (int) tabItem.getValueAt(i, 0);
+			int code_quizz = (int) tabItem.getValueAt(i, 1);
+			String reponse_joueur = (String) tabItem.getValueAt(i, 2);
+			listeRetour.add(new Item(code_question,code_quizz,reponse_joueur));
+		}
+		return listeRetour;
+	}
+	
+	
 }

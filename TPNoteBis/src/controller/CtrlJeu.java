@@ -45,7 +45,7 @@ public class CtrlJeu implements ActionListener{
 		String action = arg0.getActionCommand();
 		if (action.equals("difficulte")){
 			DAOQuestion q = new DAOQuestion(connection);
-			ArrayList<Question> listeQuestions = q.listeQuestion();			//on selectionne toutes les questions de la base de données
+			ArrayList<Question> listeQuestions = q.getAll();			//on selectionne toutes les questions de la base de données
 			String choix = vue.getChoix();
 			if (choix.equals("facile")){				
 				nbQuestionAPoser = 10;

@@ -4,11 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public abstract class DAO<Exemple> {
 	
 	protected Connection connection ;	
+	
+	public abstract Exemple get(int code);
+	
+	public abstract ArrayList<Exemple> getAll();
+	
+	public abstract void insert(Exemple objet)throws SQLException;
+	
+	public abstract void delete(Exemple objet)throws SQLException;
 	
 	public DAO(Connection con){
 		connection = con;
