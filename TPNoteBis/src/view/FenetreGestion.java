@@ -29,16 +29,14 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
     private PanelTableJoueur panJoueur;
     private PanelTableQuestion panQuestion;
     private PanelTableQuizz panQuizz;
+    private PanelRequetes panRequetes;
     private Connection connection;
 	
-// commentaire inutile
     public FenetreGestion(Connection con) {
     	connection = con;
         initComponents();
         majTableaux();
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
-        this.setVisible(false);
         this.setVisible(true);
     }
 
@@ -53,6 +51,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
         panItem = new PanelTableItem(controleurItem);
         panJoueur = new PanelTableJoueur(controleurJoueur);
         panQuestion = new PanelTableQuestion(controleurQuestion);
+        panRequetes = new PanelRequetes();
 
 
 
@@ -60,6 +59,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
         onglets.addTab("Items", null, panItem, "gestion des items");
         onglets.addTab("Joueurs", null, panJoueur, "gestion des joueurs");
         onglets.addTab("Questions", null, panQuestion, "gestion des questions");
+        onglets.addTab("Requetes", null, panRequetes, "recherche dans la base");
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
