@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -43,7 +44,7 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 	public PanelRequetes(){
 		
 		this.panelRequetes = new JPanel();
-		BoxLayout affichageRequetes = new BoxLayout(this.panelRequetes, BoxLayout.PAGE_AXIS);
+		GridLayout affichageRequetes = new GridLayout(4,1);
 		this.panelRequetes.setLayout(affichageRequetes);
 		
 		panelJoueur = new JPanel();
@@ -56,8 +57,10 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 		
 		lblNomJoueur = new JLabel("Nom du joueur : ");
 		nomJoueur = new JTextField();
+		nomJoueur.setPreferredSize(new Dimension(100,25));
 		lblMdpJoueur = new JLabel("Mot de Passe : ");
 		mdpJoueur = new JTextField();
+		mdpJoueur.setPreferredSize(new Dimension(100,25));
 		rechercheJoueur = new JButton("rechercher");
 		
 		FlowLayout affichageJoueur = new FlowLayout();
@@ -84,7 +87,9 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 		
 		lblCodeQuestion = new JLabel("Code de la question : ");
 		codeQuestion = new JTextField();
+		codeQuestion.setPreferredSize(new Dimension(100,25));
 		rechercheCodeQuestion = new JButton("rechercher");
+		
 		
 		FlowLayout affichageCodeQuestion = new FlowLayout();
 		panelCodeQuestion.setLayout(affichageCodeQuestion);
@@ -96,6 +101,7 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 		
 		lblTexteQuestion = new JLabel("Texte a chercher dans les questions : ");
 		texteQuestion = new JTextField();
+		texteQuestion.setPreferredSize(new Dimension(300,100));
 		rechercheTexteQuestion = new JButton("rechercher");
 		
 		FlowLayout affichageTexteQuestion = new FlowLayout();
