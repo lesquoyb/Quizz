@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import model.metier.Joueur;
 import model.metier.Question;
 import view.interfaces.IFenetreJeu;
+import controller.CtrlFermeture;
 import controller.CtrlJeu;
 
 public class FenetreJeu extends JFrame implements IFenetreJeu{
@@ -33,6 +34,7 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 	private JPanel panelHaut;
 	private JPanel panelCentre;
 	private JPanel panelBas;
+	private CtrlFermeture ctrlFermeture;
 	
 	
 	public FenetreJeu(Connection connection,Joueur joueur){
@@ -70,7 +72,8 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 		this.add(panelCentre,BorderLayout.CENTER);
 		this.add(panelHaut,BorderLayout.NORTH);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		ctrlFermeture = new CtrlFermeture();
+		this.addWindowListener(ctrlFermeture);
 
 		afficherSelection();
 		this.setVisible(true);
@@ -132,6 +135,7 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 		valider.setActionCommand("valider"+numero);
 		this.panelCentre.repaint();
 		this.panelCentre.validate();
+		this.pack();
 	}
 
 	@Override
@@ -145,7 +149,6 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 
 	@Override
 	public void mauvaiseReponse() {
-		// TODO Auto-generated method stub
 		majScore();
 	}
 	

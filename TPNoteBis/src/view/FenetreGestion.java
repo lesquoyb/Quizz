@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 import view.interfaces.IFenetreGestion;
+import controller.CtrlFermeture;
 import controller.CtrlItem;
 import controller.CtrlJoueur;
 import controller.CtrlQuestion;
@@ -34,8 +35,12 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
     private PanelTableQuizz panQuizz;
     private PanelRequetes panRequetes;
     private Connection connection;
+    private CtrlFermeture ctrlFermeture;
 	
     public FenetreGestion(Connection con) throws ClassNotFoundException, SQLException {
+
+		ctrlFermeture = new CtrlFermeture();
+		this.addWindowListener(ctrlFermeture);
     	connection = con;
         initComponents();
         majTableaux();

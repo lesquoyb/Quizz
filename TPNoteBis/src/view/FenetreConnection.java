@@ -39,9 +39,12 @@ public class FenetreConnection extends JFrame {
 				reussite = true;
 			} catch (ClassNotFoundException | SQLException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage(),"Erreur",JOptionPane.ERROR_MESSAGE);
-				int rep = JOptionPane.showConfirmDialog(null, "Voulez vous réessayer ?","Erreur",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) ;
-				if ( rep == JOptionPane.NO_OPTION){
+				int rep = JOptionPane.showConfirmDialog(null, "Voulez vous réessayer ?","Erreur",JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) ;
+				if ( rep == JOptionPane.CANCEL_OPTION){
 					System.exit(0);
+				}
+				else{
+					DialogChangementConnection dialog = new DialogChangementConnection();
 				}
 			}
 		}
