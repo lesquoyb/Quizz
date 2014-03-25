@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.metier.Question;
 
 public class DAOQuestion extends DAO<Question> {
@@ -19,7 +21,6 @@ public class DAOQuestion extends DAO<Question> {
 	 * @param code
 	 * @return
 	 */
-	@Override
 	public Question get(int code) {
 		String requete = "SELECT * FROM question WHERE code_question =?";
 		Question retour = null;
@@ -85,7 +86,6 @@ public class DAOQuestion extends DAO<Question> {
 									res.getString("texte_question"),
 									res.getString("reponse_question")));
 			}
-
 			fermerStatement(prep);
 			fermerResultat(res);
 
@@ -126,14 +126,27 @@ public class DAOQuestion extends DAO<Question> {
 		prep.setString(1, objet.getTexte());
 		prep.setString(2, objet.getReponse());
 		prep.executeUpdate();
-		objet.setCode(listeQuestion(objet.getTexte()).get(0).getCode());
+		ResultSet clef = prep.getGeneratedKeys();
+		clef.next();
+		objet.setCode(clef.getInt(1));
 		fermerStatement(prep);
 	}
 
 	@Override
 	public void delete(Question objet) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		if (objet != null && objet.getCode() != -1){
+			DAOQuizz q = new DAOQuizz(connection);
+			try {
+				String requete ="DELETE FROM joueur WHERE code_joueur=?";
+				PreparedStatement prep = connection.prepareStatement(requete);
+				prep.setInt(1, objet.getCode());
+				prep.executeUpdate();
+				fermerStatement(prep);
+			} 
+			catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 

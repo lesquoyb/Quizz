@@ -27,7 +27,6 @@ public class DAOJoueur extends DAO<Joueur> {
 	 * @param code
 	 * @return
 	 */
-	@Override
 	public Joueur get(int code) {
 		String requete = "SELECT * FROM joueur WHERE code_joueur =?";
 		Joueur retour = null;
@@ -86,9 +85,10 @@ public class DAOJoueur extends DAO<Joueur> {
 	 * Supprime un joueur de la table joueur ainsi que tous ses quizz.
 	 * Verifie d'abord si le code est correct.
 	 * @param j
+	 * @throws SQLException 
 	 */
 	@Override
-	public void delete(Joueur objet){
+	public void delete(Joueur objet) throws SQLException{
 		if (objet != null && objet.getCode() != -1){
 			DAOQuizz q = new DAOQuizz(connection);
 			try {
@@ -105,27 +105,52 @@ public class DAOJoueur extends DAO<Joueur> {
 				 else{
 					 connection.rollback();
 				 }
-				 connection.setAutoCommit(true);
 			} 
 			catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-
+			finally{
+				 connection.setAutoCommit(true);
+			}
 		}
 	}
 
 
 	@Override
 	public ArrayList<Joueur> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Joueur>liste= new ArrayList<Joueur>();
+		String requete = "SELECT * FROM joueur";
+		try {
+			PreparedStatement prep = connection.prepareStatement(requete);
+			ResultSet res = prep.executeQuery();
+			while(res.next()){
+				liste.add(new Joueur(res.getInt("code_joueur"), 
+									res.getString("nom"),
+									res.getString("passwd"),
+									res.getString("mail")));
+			}
+			fermerStatement(prep);
+			fermerResultat(res);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
 	}
 
 
 	@Override
 	public void insert(Joueur objet) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		String requete = "INSERT INTO joueur (nom,passwd,mail) VALUES(?,?,?)";
+		PreparedStatement prep = connection.prepareStatement(requete);
+		prep.setString(1, objet.getNom());
+		prep.setString(2, objet.getPasswd());
+		prep.setString(3, objet.getMail());
+		prep.executeUpdate();
+		ResultSet clef = prep.getGeneratedKeys();
+		clef.next();
+		objet.setCode(clef.getInt(1));
+		fermerResultat(clef);
+		fermerStatement(prep);
 	}
 
 

@@ -11,8 +11,6 @@ public abstract class DAO<Exemple> {
 	
 	protected Connection connection ;	
 	
-	public abstract Exemple get(int code);
-	
 	public abstract ArrayList<Exemple> getAll();
 	
 	public abstract void insert(Exemple objet)throws SQLException;

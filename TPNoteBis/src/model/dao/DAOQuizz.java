@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import model.metier.Item;
 import model.metier.Joueur;
+import model.metier.Question;
 import model.metier.Quizz;
 
 import com.mysql.jdbc.Statement;
@@ -76,23 +77,44 @@ public class DAOQuizz extends DAO<Quizz>{
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		
-	}
-
-
-	@Override
-	public Quizz get(int code) {
-		// TODO Auto-generated method stub
-		return null;
+		}		
 	}
 
 
 	@Override
 	public ArrayList<Quizz> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Quizz>liste= new ArrayList<Quizz>();
+		String requete = "SELECT * FROM quizz";
+		try {
+			PreparedStatement prep = connection.prepareStatement(requete);
+			ResultSet res = prep.executeQuery();
+			while(res.next()){
+				DAOJoueur j = new DAOJoueur(connection);
+				Joueur joueur = j.get(res.getInt("code_joueur"));
+				DAOItem items = new DAOItem(connection);
+				ArrayList<Item> listeItem = items.getItemQuizz(res.getInt("code_quizz"));
+				ArrayList<String> listeReponse = new ArrayList<String>();
+				ArrayList<Question> listeQuestions = new ArrayList<Question>();
+				for(Item item : listeItem){
+					DAOQuestion questions = new DAOQuestion(connection);
+					listeQuestions.add(questions.get(item.getCodeQuestion()));
+					listeReponse.add(item.getReponseJoueur());
+				}
+				liste.add(new Quizz(res.getInt("code_quizz"),
+									res.getInt("nb_question_quizz"), 
+									res.getDate("date_quizz"),
+									listeReponse,
+									listeQuestions,
+									joueur));
+			}
+
+			fermerStatement(prep);
+			fermerResultat(res);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
 	}
 
 

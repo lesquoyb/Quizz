@@ -10,22 +10,34 @@ public class Quizz {
 	private Joueur joueur;
 	private ArrayList<String> reponses;
 	private ArrayList<Question> listeQuestions;
-	private int code = -1;
+	private int code;
 	
 	
-	public Quizz(int nombreQuestion, Date date, ArrayList<String> reponses,
+	public Quizz(int codeQuizz,int nombreQuestion, Date date, ArrayList<String> reponses,
 			ArrayList<Question> listeQuestions,Joueur j) {
-		super();
+		this.code = codeQuizz;
 		this.nombreQuestion = nombreQuestion;
 		this.date = date;
 		this.joueur = j;
 		this.reponses = reponses;
 		this.listeQuestions = listeQuestions;
-		this.code = -1;
 	}
 	
 	
 	
+	public Quizz(int nombreQuestion, Date date,
+			ArrayList<String> reponses, ArrayList<Question> listeQuestions, Joueur joueur) {
+		super();
+		this.nombreQuestion = nombreQuestion;
+		this.date = date;
+		this.joueur = joueur;
+		this.reponses = reponses;
+		this.listeQuestions = listeQuestions;
+		code = -1;
+	}
+
+
+
 	public int getNombreQuestion() {
 		return nombreQuestion;
 	}

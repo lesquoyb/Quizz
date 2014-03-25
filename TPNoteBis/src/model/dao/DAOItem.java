@@ -25,8 +25,6 @@ public class DAOItem extends DAO<Item> {
 		prep.setString(3, objet.getReponseJoueur());
 		prep.executeUpdate();
 		fermerStatement(prep);
-
-		
 	}
 	
 	@Override
@@ -51,17 +49,45 @@ public class DAOItem extends DAO<Item> {
 		return liste;
 	}
 
-	@Override
-	public Item get(int code) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Retourne tous les items appartenant à un quizz.
+	 * @param codeQuizz
+	 * @return
+	 */
+	public ArrayList<Item> getItemQuizz(int codeQuizz){
+		ArrayList<Item> listeRetour = new ArrayList<Item>();
+		String requete = "SELECT * FROM item WHERE code_quizz=?";
+		try {
+			PreparedStatement prep = connection.prepareStatement(requete);
+			prep.setInt(1,codeQuizz);
+			ResultSet res = prep.executeQuery();
+			while(res.next()){
+				listeRetour.add(new Item(res.getInt("code_question"), 
+									res.getInt("code_quizz"),
+									res.getString("reponse_joueur")));
+			}
+
+			fermerStatement(prep);
+			fermerResultat(res);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return listeRetour;
 	}
 
 	@Override
 	public void delete(Item objet) throws SQLException {
-		// TODO Auto-generated method stub
-		
+
+		if (objet != null && objet.getCodeQuestion() != -1 && objet.getCodeQuizz() != -1){
+			String requete ="DELETE FROM item WHERE code_quizz=? AND code_question=?";
+			PreparedStatement prep = connection.prepareStatement(requete);
+			prep.setInt(1, objet.getCodeQuizz());
+			prep.setInt(2, objet.getCodeQuestion());
+			prep.executeUpdate();
+			fermerStatement(prep);
+		}
 	}
+	
 	
 	
 	
