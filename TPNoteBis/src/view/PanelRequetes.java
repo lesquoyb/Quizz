@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -12,8 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import view.interfaces.IPanelRequetes;
+import controller.CtrlRequetes;
 
 public class PanelRequetes extends JPanel implements IPanelRequetes {
+	
+	private CtrlRequetes controleur;
 	
 	private JPanel panelRequetes;
 	private JPanel panelJoueur;
@@ -41,7 +43,9 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 	private JButton rechercheCodeQuestion;
 	private JButton rechercheTexteQuestion;
 	
-	public PanelRequetes(){
+	public PanelRequetes(CtrlRequetes controleur){
+		
+		this.controleur = controleur;
 		
 		this.panelRequetes = new JPanel();
 		GridLayout affichageRequetes = new GridLayout(4,1);
@@ -118,6 +122,24 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 		this.panelRequetes.add(panelTexteQuestion);
 		this.add(panelRequetes);
 		this.setVisible(true);
+		
+		this.controleur.setVue(this);
+	}
+	
+	@Override
+	public JLabel getResultatNombreQuestion() {
+		return this.resultatNombreQuestion;
+	}
+	
+	@Override
+	public CtrlRequetes getControleur() {
+		return controleur;
+	}
+
+	@Override
+	public void setResultatNombreQuestion(int nb) {
+		this.resultatNombreQuestion.setText(String.valueOf(nb));
+		
 	}
 
 }

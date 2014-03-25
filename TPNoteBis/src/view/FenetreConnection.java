@@ -15,7 +15,7 @@ public class FenetreConnection extends JFrame {
 	
 	private final String logo = "./src/resources/logo_quizz.png";
 	
-	public FenetreConnection(){
+	public FenetreConnection() throws ClassNotFoundException, SQLException{
 
 		this.add(new JLabel(new ImageIcon(logo)));
 		this.setSize(500,500);
@@ -27,8 +27,10 @@ public class FenetreConnection extends JFrame {
 	
 	/**
 	 * Si la création réussi on lance la fenetre principale, sinon on demande si l'utilisateur veut réessayer
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	private void creerConnection(){
+	private void creerConnection() throws ClassNotFoundException, SQLException{
 		 boolean reussite = false;
 		 Connection connection = null;
 		while(!reussite){

@@ -2,6 +2,7 @@
 package view;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
@@ -12,6 +13,7 @@ import controller.CtrlItem;
 import controller.CtrlJoueur;
 import controller.CtrlQuestion;
 import controller.CtrlQuizz;
+import controller.CtrlRequetes;
 
 
 /**
@@ -24,6 +26,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 	private CtrlJoueur controleurJoueur;
 	private CtrlQuizz controleurQuizz;
 	private CtrlQuestion controleurQuestion;
+	private CtrlRequetes controleurRequetes;
     private JTabbedPane onglets;
     private PanelTableItem panItem;
     private PanelTableJoueur panJoueur;
@@ -32,7 +35,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
     private PanelRequetes panRequetes;
     private Connection connection;
 	
-    public FenetreGestion(Connection con) {
+    public FenetreGestion(Connection con) throws ClassNotFoundException, SQLException {
     	connection = con;
         initComponents();
         majTableaux();
@@ -41,17 +44,32 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
     }
 
 
-	private void initComponents() {
+	private void initComponents() throws ClassNotFoundException, SQLException {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         onglets = new JTabbedPane();
         
+        controleurRequetes = new CtrlRequetes();
+        
+        controleurQuestion = new CtrlQuestion();
+    	controleurQuestion.setVue(panQuestion);
+        controleurItem = new CtrlItem(connection);
+        controleurItem.setVue(panItem);
+        controleurJoueur = new CtrlJoueur();
+        controleurJoueur.setVue(panJoueur);
+        controleurQuizz = new CtrlQuizz();
+        controleurQuizz.setVue(panQuizz);
+
+        
+        
         panQuizz = new PanelTableQuizz(controleurQuizz);
         panItem = new PanelTableItem(controleurItem);
         panJoueur = new PanelTableJoueur(controleurJoueur);
         panQuestion = new PanelTableQuestion(controleurQuestion);
-        panRequetes = new PanelRequetes();
+        panRequetes = new PanelRequetes(controleurRequetes);
+        
+        controleurRequetes.setVue(panRequetes);
 
 
 
@@ -82,14 +100,7 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
         onglets.getAccessibleContext().setAccessibleDescription("gestion des quizz");
 
 
-    	controleurQuestion = new CtrlQuestion();
-    	controleurQuestion.setVue(panQuestion);
-        controleurItem = new CtrlItem(connection);
-        controleurItem.setVue(panItem);
-        controleurJoueur = new CtrlJoueur();
-        controleurJoueur.setVue(panJoueur);
-        controleurQuizz = new CtrlQuizz();
-        controleurQuizz.setVue(panQuizz);
+    	
         pack();
     }
 
