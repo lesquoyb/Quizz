@@ -110,7 +110,8 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 		this.panelRequetes.add(panelNombreQuestion);
 		this.panelRequetes.add(panelCodeQuestion);
 		this.panelRequetes.add(panelTexteQuestion);
-		
+		this.add(panelRequetes);
+		this.setVisible(true);
 	}
 
 }
