@@ -11,5 +11,13 @@ public interface IPanelRequetes {
 	public CtrlRequetes getControleur();
 	
 	public void setResultatNombreQuestion(int nb);
+	
+	public String getCodeQuestion();
+	
+	public String getNomJoueur();
+	
+	public String getMdpJoueur();
+	
+	public String getTexteQuestion();
 
 }

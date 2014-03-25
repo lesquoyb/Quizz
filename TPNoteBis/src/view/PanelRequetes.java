@@ -6,9 +6,10 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import view.interfaces.IPanelRequetes;
 import controller.CtrlRequetes;
@@ -26,7 +27,7 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 	private JTextField nomJoueur;
 	private JTextField mdpJoueur;
 	private JTextField codeQuestion;
-	private JTextField texteQuestion;
+	private JTextArea texteQuestion;
 	
 	private JLabel resultatNombreQuestion;
 	private JLabel lblNombreQuestion;
@@ -34,10 +35,6 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 	private JLabel lblMdpJoueur;
 	private JLabel lblCodeQuestion;
 	private JLabel lblTexteQuestion;
-	
-	private JOptionPane resultatJoueur;
-	private JOptionPane resultatCodeQuestion;
-	private JOptionPane resultatTexteQuestion;
 	
 	private JButton rechercheJoueur;
 	private JButton rechercheCodeQuestion;
@@ -66,6 +63,8 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 		mdpJoueur = new JTextField();
 		mdpJoueur.setPreferredSize(new Dimension(100,25));
 		rechercheJoueur = new JButton("rechercher");
+		rechercheJoueur.setActionCommand("rechercheJoueur");
+		rechercheJoueur.addActionListener(controleur);
 		
 		FlowLayout affichageJoueur = new FlowLayout();
 		panelJoueur.setLayout(affichageJoueur);
@@ -93,6 +92,8 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 		codeQuestion = new JTextField();
 		codeQuestion.setPreferredSize(new Dimension(100,25));
 		rechercheCodeQuestion = new JButton("rechercher");
+		rechercheCodeQuestion.setActionCommand("rechercheCodeQuestion");
+		rechercheCodeQuestion.addActionListener(controleur);
 		
 		
 		FlowLayout affichageCodeQuestion = new FlowLayout();
@@ -104,9 +105,12 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 		// ----- panel de recherche de questions par un texte -----
 		
 		lblTexteQuestion = new JLabel("Texte a chercher dans les questions : ");
-		texteQuestion = new JTextField();
+		texteQuestion = new JTextArea();
+		texteQuestion.setBorder(codeQuestion.getBorder());
 		texteQuestion.setPreferredSize(new Dimension(300,100));
 		rechercheTexteQuestion = new JButton("rechercher");
+		rechercheTexteQuestion.setActionCommand("rechercheTexteQuestion");
+		rechercheTexteQuestion.addActionListener(controleur);
 		
 		FlowLayout affichageTexteQuestion = new FlowLayout();
 		panelTexteQuestion.setLayout(affichageTexteQuestion);
@@ -140,6 +144,26 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 	public void setResultatNombreQuestion(int nb) {
 		this.resultatNombreQuestion.setText(String.valueOf(nb));
 		
+	}
+
+	@Override
+	public String getCodeQuestion() {
+		return this.codeQuestion.getText();
+	}
+
+	@Override
+	public String getNomJoueur() {
+		return this.nomJoueur.getText();
+	}
+
+	@Override
+	public String getMdpJoueur() {
+		return this.mdpJoueur.getText();
+	}
+
+	@Override
+	public String getTexteQuestion() {
+		return this.texteQuestion.getText();
 	}
 
 }
