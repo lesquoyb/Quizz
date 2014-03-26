@@ -8,4 +8,10 @@ public interface IPanelTableItem  extends IPanelTable{
 	
 	public ArrayList<Item>getSelection();
 
+	public String getCodeQuestion();
+	
+	public String getCodeQuizz();
+	
+	public String getReponseJoueur();
+
 }

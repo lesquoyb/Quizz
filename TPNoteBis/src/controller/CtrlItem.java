@@ -31,19 +31,48 @@ public class CtrlItem implements ActionListener{
 					e1.printStackTrace();
 				}		
 			}
-			
 		}
 		else if(action.equals("Valider"	)){
+			DAOItem items = new DAOItem(connection);
 			
+			int codeQuestion = Integer.parseInt(vue.getCodeQuestion());
+			int codeQuizz = Integer.parseInt(vue.getCodeQuizz());
+			String reponseJoueur = vue.getReponseJoueur();
+			
+			Item itemInsert = new Item(codeQuestion,codeQuizz,reponseJoueur);
+			
+			try {
+				items.insert(itemInsert);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
 	public IPanelTableItem getVue() {
 		return vue;
 	}
-
+	
+	public void afficheTableau() {
+		DAOItem items = new DAOItem(connection);
+		ArrayList<Item> listeItems = items.getAll();
+		
+		int nbItems = listeItems.size();
+		for (int i=0; i<nbItems; i++) {
+			String codeQuestion = String.valueOf(listeItems.get(i).getCodeQuestion());
+			String codeQuizz = String.valueOf(listeItems.get(i).getCodeQuizz());
+			String reponseJoueur = listeItems.get(i).getReponseJoueur();
+			
+			vue.getTable().setValueAt(codeQuestion, i, 0);
+			vue.getTable().setValueAt(codeQuizz,i,1);
+			vue.getTable().setValueAt(reponseJoueur, i, 2);
+			
+		}
+	}
+	
 	public void setVue(IPanelTableItem vue) {
 		this.vue = vue;
+		afficheTableau();
 	}
 
 }

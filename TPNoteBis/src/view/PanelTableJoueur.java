@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -9,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
+import model.metier.Joueur;
 import view.interfaces.IPanelTableJoueur;
 import view.modelTable.ModelTableJoueur;
 import controller.CtrlJoueur;
@@ -128,6 +131,20 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
         );
 	}
 	
+	@Override
+	public ArrayList<Joueur> getSelection() {
+		int[] selected = tabJoueur.getSelectedRows();
+		ArrayList<Joueur>listeRetour = new ArrayList<Joueur>();
+		for (int i : selected){
+			String mail_joueur = (String) tabJoueur.getValueAt(i, 0);
+			String nom_joueur = (String) tabJoueur.getValueAt(i, 1);
+			String mdp_joueur = (String) tabJoueur.getValueAt(i, 2);
+			int code_joueur = (int) tabJoueur.getValueAt(i, 3);
+			listeRetour.add(new Joueur(code_joueur,mail_joueur,nom_joueur,mdp_joueur));
+		}
+		return listeRetour;
+	}
+	
 	
     @Override
 	public void rafraichirTable() {
@@ -138,6 +155,21 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
 	@Override
 	public JTable getTable() {
 		return tabJoueur;
+	}
+
+	@Override
+	public String getNomJoueur() {
+		return nom.getText();
+	}
+
+	@Override
+	public String getMdpJoueur() {
+		return mdp.getText();
+	}
+
+	@Override
+	public String getMailJoueur() {
+		return mail.getText();
 	}
 	
 	

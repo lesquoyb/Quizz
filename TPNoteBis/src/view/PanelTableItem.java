@@ -161,5 +161,15 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
 		return listeRetour;
 	}
 	
+	public String getCodeQuestion() {
+		return this.codeQuestion.getText();
+	}
 	
+	public String getCodeQuizz() {
+		return this.codeQuizz.getText();
+	}
+	
+	public String getReponseJoueur() {
+		return this.reponseJoueur.getText();
+	}
 }
