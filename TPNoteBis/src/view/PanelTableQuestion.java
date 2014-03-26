@@ -34,6 +34,7 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 		texte = new JTextArea();
 		texte.setColumns(5);
 		texte.setRows(20);
+		texte.setEnabled(true);
 		scrollTexte.setViewportView(texte);
 		panelSaisie = new JPanel();
 		panScroll = new JScrollPane();

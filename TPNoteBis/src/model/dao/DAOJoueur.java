@@ -100,7 +100,8 @@ public class DAOJoueur extends DAO<Joueur> {
 				prep.executeUpdate();
 				fermerStatement(prep);
 				 if (JOptionPane.showConfirmDialog(null,"Êtes vous sur de vouloir supprimer ce joueur ainsi que les quizz qu'il a effectué?","joueur trouvé",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-					 connection.commit();
+					connection.commit();
+					objet.setCode(-1);
 				 }
 				 else{
 					 connection.rollback();
