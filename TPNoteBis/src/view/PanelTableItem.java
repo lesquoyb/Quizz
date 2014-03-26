@@ -29,9 +29,9 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
     private JScrollPane panScrollItem;
     private JTextField reponseJoueur;
     private JTable tabItem;
-    private JLabel jLabel4;
-    private JLabel jLabel5;
-    private JLabel jLabel6;
+    private JLabel labReponse;
+    private JLabel labQuizz;
+    private JLabel labQuestion;
     private JPanel jPanel2;
 	
 	public PanelTableItem(CtrlItem controleurItem	){
@@ -40,9 +40,9 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
         tabItem = new JTable();
 
         jPanel2 = new JPanel();
-        jLabel4 = new JLabel();
-        jLabel5 = new JLabel();
-        jLabel6 = new JLabel();
+        labReponse = new JLabel();
+        labQuizz = new JLabel();
+        labQuestion = new JLabel();
         btnSupprimerItem = new JButton();
         codeQuestion = new JTextField();
         codeQuizz = new JTextField();
@@ -54,11 +54,11 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
         
         panScrollItem.setViewportView(tabItem);
 
-        jLabel4.setText("reponse");
+        labReponse.setText("reponse");
 
-        jLabel5.setText("code quizz");
+        labQuizz.setText("code quizz");
 
-        jLabel6.setText("code question");
+        labQuestion.setText("code question");
 
         btnSupprimerItem.setText("Supprimer");
         btnSupprimerItem.setToolTipText("supprime la ligne selectionnée");
@@ -66,45 +66,45 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
         btnValiderItem.setText("Valider");
         btnValiderItem.setToolTipText("valide les informations entrées");
 
-        GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+        GroupLayout groupLayout = new GroupLayout(jPanel2);
+        jPanel2.setLayout(groupLayout);
+        groupLayout.setHorizontalGroup(
+        	groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(groupLayout.createSequentialGroup()
+                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(groupLayout.createSequentialGroup()
                         .addGap(248, 248, 248)
-                        .addComponent(jLabel6)
+                        .addComponent(labQuestion)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(codeQuestion, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel5)
+                        .addComponent(labQuizz)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(codeQuizz, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
+                        .addComponent(labReponse)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(reponseJoueur, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(groupLayout.createSequentialGroup()
                         .addGap(363, 363, 363)
                         .addComponent(btnValiderItem)
                         .addGap(118, 118, 118)
                         .addComponent(btnSupprimerItem)))
                 .addContainerGap(358, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        groupLayout.setVerticalGroup(
+        	groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(groupLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(codeQuestion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(codeQuizz, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(reponseJoueur, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
+                    .addComponent(labQuestion)
+                    .addComponent(labQuizz)
+                    .addComponent(labReponse))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValiderItem)
                     .addComponent(btnSupprimerItem))
                 .addGap(36, 36, 36))

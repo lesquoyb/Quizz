@@ -49,15 +49,20 @@ public class DAOQuizz extends DAO<Quizz>{
 				item.insert(i);
 			}
 			connection.commit();
-			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
-				connection.setAutoCommit(true);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
+		}
+		finally{
+			try {
+				connection.setAutoCommit(true);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -120,8 +125,19 @@ public class DAOQuizz extends DAO<Quizz>{
 
 	@Override
 	public void delete(Quizz objet) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		if (objet != null && objet.getCode() != -1){
+			try {
+				String requete ="DELETE FROM quizz WHERE code_quizz=?";
+				PreparedStatement prep = connection.prepareStatement(requete);
+				prep.setInt(1, objet.getCode());
+				prep.executeUpdate();
+				fermerStatement(prep);
+				objet.setCode(-1);
+			} 
+			catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 	

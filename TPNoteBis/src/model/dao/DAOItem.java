@@ -85,6 +85,8 @@ public class DAOItem extends DAO<Item> {
 			prep.setInt(2, objet.getCodeQuestion());
 			prep.executeUpdate();
 			fermerStatement(prep);
+			objet.setCodeQuestion(-1);
+			objet.setCodeQuizz(-1);
 		}
 	}
 	

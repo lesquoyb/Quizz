@@ -137,11 +137,12 @@ public class DAOQuestion extends DAO<Question> {
 		if (objet != null && objet.getCode() != -1){
 			DAOQuizz q = new DAOQuizz(connection);
 			try {
-				String requete ="DELETE FROM joueur WHERE code_joueur=?";
+				String requete ="DELETE FROM question WHERE code_question=?";
 				PreparedStatement prep = connection.prepareStatement(requete);
 				prep.setInt(1, objet.getCode());
 				prep.executeUpdate();
 				fermerStatement(prep);
+				objet.setCode(-1);
 			} 
 			catch (SQLException e1) {
 				e1.printStackTrace();
