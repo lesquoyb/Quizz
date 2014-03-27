@@ -155,9 +155,10 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 		int[] selected = tabQuestion.getSelectedRows();
 		ArrayList<Question>listeRetour = new ArrayList<Question>();
 		for (int i : selected){
+			int code = (int) modelTable.getValueAt(i, 0);
 			String texte = (String) tabQuestion.getValueAt(i, 1);
 			String reponse = (String) tabQuestion.getValueAt(i, 2);
-			listeRetour.add(new Question(texte,reponse));
+			listeRetour.add(new Question(code,texte,reponse));
 		}
 		return listeRetour;
 	}
