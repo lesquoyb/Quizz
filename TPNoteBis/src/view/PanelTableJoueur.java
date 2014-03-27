@@ -13,7 +13,6 @@ import javax.swing.LayoutStyle;
 
 import model.metier.Joueur;
 import view.interfaces.IPanelTableJoueur;
-import view.modelTable.ModelTableItem;
 import view.modelTable.ModelTableJoueur;
 import controller.CtrlJoueur;
 
@@ -155,11 +154,7 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
 	}
 	
 	
-    @Override
-	public void rafraichirTable() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void viderChamps() {

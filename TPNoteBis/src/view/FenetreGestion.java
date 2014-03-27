@@ -8,7 +8,6 @@ import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import view.interfaces.IFenetreGestion;
 import controller.CtrlFermeture;
 import controller.CtrlItem;
 import controller.CtrlJoueur;
@@ -18,10 +17,10 @@ import controller.CtrlRequetes;
 
 
 /**
- *
+ *	Fenetre Principale du logiciel de gestion des bases de données.
  * @author baptiste
  */
-public class FenetreGestion extends JFrame implements IFenetreGestion {
+public class FenetreGestion extends JFrame {
 
 	private CtrlItem controleurItem;
 	private CtrlJoueur controleurJoueur;
@@ -43,7 +42,6 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
 		this.addWindowListener(ctrlFermeture);
     	connection = con;
         initComponents();
-        majTableaux();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -115,20 +113,6 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
         pack();
     }
 
-
-
-
-	@Override
-	public void majTableaux() {
-		panItem.rafraichirTable();
-		panJoueur.rafraichirTable();
-		panQuestion.rafraichirTable();
-		panQuizz.rafraichirTable();
-	}
-
-	
-	
- 
 
 
  

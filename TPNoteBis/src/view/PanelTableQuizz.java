@@ -175,11 +175,6 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 	}
 
 
-	@Override
-	public void rafraichirTable() {
-		
-	}
-
 
 	@Override
 	public JTable getTable() {

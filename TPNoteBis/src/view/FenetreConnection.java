@@ -11,6 +11,11 @@ import javax.swing.JOptionPane;
 import model.dao.MaConnection;
 
 
+/**
+ * Fenetre de démarrage de l'application, elle lance le programme une fois que la connection a été établie.
+ * @author baptiste
+ *
+ */
 public class FenetreConnection extends JFrame {
 	
 	private final String logo = "./src/resources/logo_quizz.png";

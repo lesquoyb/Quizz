@@ -16,9 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.table.DefaultTableModel;
 
-import org.junit.experimental.ParallelComputer;
-
-import model.metier.Item;
 import model.metier.Question;
 import view.interfaces.IPanelTableQuestion;
 import view.modelTable.ModelTableQuestion;
@@ -168,10 +165,6 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 		}	
 	}
 
-	@Override
-	public void rafraichirTable() {
-		
-	}
 
 	@Override
 	public JTable getTable() {

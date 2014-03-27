@@ -15,6 +15,11 @@ import javax.swing.JTextField;
 import view.interfaces.IAuthent;
 import controller.CtrlAuthent;
 
+/**
+ * Fenetre permettant d'authentifier un joueur.
+ * @author baptiste
+ *
+ */
 public class FenetreAuthent extends JFrame implements IAuthent {
 
 	private CtrlAuthent controleur;

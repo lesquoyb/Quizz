@@ -149,12 +149,6 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
 
 
 	@Override
-	public void rafraichirTable() {
-		
-		
-	}
-
-	@Override
 	public JTable getTable() {
 		return tabItem;
 	}

@@ -16,6 +16,11 @@ import controller.CtrlConnection;
 import model.dao.MaConnection;
 import view.interfaces.IChangementConnection;
 
+/**
+ * Dialogue permettant de regler la connection si elle a échouée.
+ * @author baptiste
+ *
+ */
 public class DialogChangementConnection  extends JDialog implements IChangementConnection{
 
 	private JTextField adresse;
