@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import model.metier.Question;
 
 public class DAOQuestion extends DAO<Question> {
@@ -135,7 +133,6 @@ public class DAOQuestion extends DAO<Question> {
 	@Override
 	public void delete(Question objet) throws SQLException {
 		if (objet != null && objet.getCode() != -1){
-			DAOQuizz q = new DAOQuizz(connection);
 			try {
 				String requete ="DELETE FROM question WHERE code_question=?";
 				PreparedStatement prep = connection.prepareStatement(requete);

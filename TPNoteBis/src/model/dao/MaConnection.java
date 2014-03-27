@@ -10,9 +10,9 @@ public class MaConnection {
 
 
 	//private static String url ="jdbc:mysql://localhost/desgorces2u_projetjava?profileSQL=true";
-	private static String adresse = "localhost";
+	private static String adresse = "localhost"; //"infodb2.iutmetz.ad.univ-lorraine.fr";
 	private static String base = "desgorces2u_projetjava";
-	private static String utilisateur ="root";			//"desgorce2u_appli";
+	private static String utilisateur =	"root";//"desgorce2u_appli";
 	private static String motDePasse = "";//"31208714";
 	private static String nomDriver = "com.mysql.jdbc.Driver";
 	private static Connection connection;

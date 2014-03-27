@@ -42,7 +42,6 @@ public class DAOItem extends DAO<Item> {
 
 			fermerStatement(prep);
 			fermerResultat(res);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
