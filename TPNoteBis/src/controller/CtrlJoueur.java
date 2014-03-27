@@ -43,9 +43,24 @@ public class CtrlJoueur implements ActionListener{
 			for (Joueur joueur: vue.getSelection()) {
 				try {
 					joueurs.delete(joueur);
+					 if (JOptionPane.showConfirmDialog(null,"Êtes vous sur de vouloir supprimer ce joueur ainsi que les quizz qu'il a effectué?","joueur trouvé",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+							connection.commit();
+							joueur.setCode(-1);
+						 }
+						 else{
+							 connection.rollback();
+						 }
+					 
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, "Echec de la suppression:\n"+e1.getMessage(), "Suppression échouée", JOptionPane.ERROR_MESSAGE );
 				}	
+				finally{
+					try {
+						connection.setAutoCommit(true);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 			this.remplissageTableau();
 		}

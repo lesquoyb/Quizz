@@ -99,19 +99,9 @@ public class DAOJoueur extends DAO<Joueur> {
 				prep.setInt(1, objet.getCode());
 				prep.executeUpdate();
 				fermerStatement(prep);
-				 if (JOptionPane.showConfirmDialog(null,"Êtes vous sur de vouloir supprimer ce joueur ainsi que les quizz qu'il a effectué?","joueur trouvé",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-					connection.commit();
-					objet.setCode(-1);
-				 }
-				 else{
-					 connection.rollback();
-				 }
 			} 
 			catch (SQLException e1) {
 				e1.printStackTrace();
-			}
-			finally{
-				 connection.setAutoCommit(true);
 			}
 		}
 	}
