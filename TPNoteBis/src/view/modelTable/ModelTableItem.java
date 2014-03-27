@@ -8,6 +8,8 @@ import model.metier.Item;
 
 public class ModelTableItem extends AbstractTableModel{
 
+
+
 	private final static String[] titres =  new String [] {  "code_question", "code_quizz", "reponse_joueur"    };
 	private final static Class[] types = new Class[] 	  {	   int.class, int.class, String.class};
 	protected ArrayList<Item> items;
@@ -53,11 +55,15 @@ public class ModelTableItem extends AbstractTableModel{
 
 	@Override
 	public int getColumnCount() {
-		return 3;
+		return titres.length;
 	}
 
 	@Override
 	public int getRowCount() {
 		return items.size();
+	}
+	@Override
+	public String getColumnName(int column) {
+		return titres[column];
 	}
 }

@@ -38,6 +38,11 @@ public class ModelTableQuestion  extends AbstractTableModel {
 	}
 	
 	@Override
+	public String getColumnName(int column) {
+		return titres[column];
+	}
+
+	@Override
 	public Object getValueAt (int row, int column) {
 		
 		Object objet = null;

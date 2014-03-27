@@ -28,6 +28,11 @@ public class ModelTableJoueur extends AbstractTableModel {
 
 	
 	@Override
+	public String getColumnName(int column) {
+		return titres[column];
+	}
+
+	@Override
 	public boolean isCellEditable(int arg0, int arg1) {
 		return false;
 	}

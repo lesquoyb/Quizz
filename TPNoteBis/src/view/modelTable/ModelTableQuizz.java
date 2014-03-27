@@ -61,6 +61,11 @@ public class ModelTableQuizz extends AbstractTableModel {
 		
 		
 	}
+
+	@Override
+	public String getColumnName(int arg0) {
+		return titres[arg0];
+	}
     
 }
 
