@@ -68,7 +68,7 @@ public class CtrlItem implements ActionListener{
 	
 	public void setVue(IPanelTableItem vue) {
 		this.vue = vue;
-		//this.remplissageTableau();
+		this.remplissageTableau();
 	}
 
 }

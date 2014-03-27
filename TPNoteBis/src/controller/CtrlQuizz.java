@@ -79,7 +79,7 @@ public class CtrlQuizz implements ActionListener{
 
 	public void setVue(IPanelTableQuizz vue) {
 		this.vue = vue;
-		//this.remplissageTableau();
+		this.remplissageTableau();
 	}
 	
 	

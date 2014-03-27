@@ -69,6 +69,7 @@ public class CtrlQuestion implements ActionListener{
 
 	public void setVue(IPanelTableQuestion vue) {
 		this.vue = vue;
+		this.remplissageTableau();
 	}
 
 }
