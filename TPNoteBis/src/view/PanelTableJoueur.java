@@ -144,10 +144,10 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
 		int[] selected = tabJoueur.getSelectedRows();
 		ArrayList<Joueur>listeRetour = new ArrayList<Joueur>();
 		for (int i : selected){
-			String mail_joueur = (String) tabJoueur.getValueAt(i, 0);
+			String mail_joueur = (String) tabJoueur.getValueAt(i, 2);
 			String nom_joueur = (String) tabJoueur.getValueAt(i, 1);
-			String mdp_joueur = (String) tabJoueur.getValueAt(i, 2);
-			int code_joueur = (int) tabJoueur.getValueAt(i, 3);
+			String mdp_joueur = (String) tabJoueur.getValueAt(i, 3);
+			int code_joueur = (int) tabJoueur.getValueAt(i, 0);
 			listeRetour.add(new Joueur(code_joueur,mail_joueur,nom_joueur,mdp_joueur));
 		}
 		return listeRetour;
