@@ -60,7 +60,7 @@ public class ModelTableQuestion  extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return 3;
+		return titres.length;
 	}
 
 	@Override

@@ -46,7 +46,7 @@ public class ModelTableJoueur extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return 4;
+		return titres.length;
 	}
 
 
