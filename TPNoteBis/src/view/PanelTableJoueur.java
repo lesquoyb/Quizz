@@ -41,6 +41,10 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
 	        panScrollJoueur = new JScrollPane();
 	        tabJoueur = new JTable();
 	        
+
+	        tabJoueur.setModel(modelTable);
+	        panScrollJoueur.setViewportView(tabJoueur);
+	        
 	        controleurJoueur.setVue(this);
 	        
 	        jPanel3 = new JPanel();
@@ -53,8 +57,6 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
 	        jLabel9 = new JLabel();
 	        btnSupprimerJoueur = new JButton();
 
-        tabJoueur.setModel(modelTable);
-        panScrollJoueur.setViewportView(tabJoueur);
 
         jLabel7.setText("mail joueur");
 

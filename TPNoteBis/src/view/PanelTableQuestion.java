@@ -35,8 +35,10 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 	private ModelTableQuestion modelTable;
 	
 	public PanelTableQuestion(CtrlQuestion controleur){
+		
+        modelTable = new ModelTableQuestion();
 		controleur.setVue(this);
-		tabQuestion = new JTable(new ModelTableQuestion());
+		tabQuestion = new JTable(modelTable);
 		scrollTexte = new JScrollPane();
 		texte = new JTextArea();
 		texte.setColumns(5);
@@ -52,8 +54,7 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
         btnValiderQuestion = new JButton();
         scrollPane = new JScrollPane();
         
-        modelTable = new ModelTableQuestion();
-        tabQuestion.setModel(modelTable);
+
         
 
         btnValiderQuestion.setText("Valider");

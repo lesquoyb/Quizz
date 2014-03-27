@@ -62,8 +62,6 @@ public class CtrlItem implements ActionListener{
 		ArrayList<Item> listeItems = items.getAll();
 		modelTable = vue.getModel();
 		modelTable.setListe(listeItems);
-			
-		
 	}
 	
 	public void setVue(IPanelTableItem vue) {

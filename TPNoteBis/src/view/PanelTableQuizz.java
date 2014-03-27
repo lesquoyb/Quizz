@@ -42,7 +42,8 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 
 	
 	public PanelTableQuizz(CtrlQuizz controleurQuizz){
-		
+
+		modelTable = new ModelTableQuizz();
 		controleurQuizz.setVue(this);
 		labDate = new JLabel("date");
 		labNbQuestion = new JLabel("nombre de questions");

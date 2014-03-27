@@ -40,6 +40,8 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
 		
         panScrollItem = new JScrollPane();
         tabItem = new JTable();
+        modelTable = new ModelTableItem();
+        tabItem.setModel(modelTable);
         controleurItem.setVue(this);
 
         jPanel2 = new JPanel();
@@ -53,8 +55,7 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
         btnValiderItem = new JButton();
 
         this.btnSupprimerItem.addActionListener(controleurItem);
-        modelTable = new ModelTableItem();
-        tabItem.setModel(modelTable);
+
         
         panScrollItem.setViewportView(tabItem);
 
