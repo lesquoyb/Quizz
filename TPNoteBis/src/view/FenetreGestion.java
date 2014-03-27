@@ -1,6 +1,7 @@
 
 package view;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -38,6 +39,7 @@ public class FenetreGestion extends JFrame {
 	
     public FenetreGestion(Connection con) throws ClassNotFoundException, SQLException {
 
+    	this.setTitle("Outil de gestion de quizz");
 		ctrlFermeture = new CtrlFermeture();
 		this.addWindowListener(ctrlFermeture);
     	connection = con;
@@ -51,6 +53,8 @@ public class FenetreGestion extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        this.getContentPane().setBackground(new Color(80,60,60));
+        
         onglets = new JTabbedPane();
         
         controleurRequetes = new CtrlRequetes();

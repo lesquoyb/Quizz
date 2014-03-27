@@ -19,7 +19,13 @@ public class testDAOJoueur {
 	
 	
 	
-	public testDAOJoueur(Connection con) {
+	public testDAOJoueur() {
+		try {
+			connection = MaConnection.getInstance();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		MaConnection.setBase("desgorces2u_projetjavaTest");
 		daoJoueur = new DAOJoueur(connection);
 	}

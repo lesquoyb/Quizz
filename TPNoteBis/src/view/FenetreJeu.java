@@ -40,6 +40,8 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 	
 	
 	public FenetreJeu(Connection connection,Joueur joueur){
+		
+		this.setTitle("Quizzator");
 		questionEnCours ="";
 		controleur = new CtrlJeu();
 		controleur.setJoueur(joueur);
