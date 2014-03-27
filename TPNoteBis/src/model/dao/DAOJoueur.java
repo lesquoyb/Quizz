@@ -141,7 +141,7 @@ public class DAOJoueur extends DAO<Joueur> {
 
 	@Override
 	public void insert(Joueur objet) throws SQLException {
-		String requete = "INSERT INTO joueur (nom,passwd,mail) VALUES(?,?,?)";
+		String requete = "INSERT INTO joueur (nom_joueur,passwd_joueur,mail_joueur) VALUES(?,?,?)";
 		PreparedStatement prep = connection.prepareStatement(requete);
 		prep.setString(1, objet.getNom());
 		prep.setString(2, objet.getPasswd());
