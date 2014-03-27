@@ -6,14 +6,18 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.table.AbstractTableModel;
+
 import model.dao.DAOItem;
 import model.metier.Item;
 import view.interfaces.IPanelTableItem;
+import view.modelTable.ModelTableItem;
 
 public class CtrlItem implements ActionListener{
 
 	private IPanelTableItem vue;
 	private Connection connection;
+	private ModelTableItem modelTable;
 	
 	public CtrlItem(Connection con){
 		connection = con; 
@@ -53,26 +57,18 @@ public class CtrlItem implements ActionListener{
 		return vue;
 	}
 	
-	public void afficheTableau() {
+	public void remplissageTableau() {
 		DAOItem items = new DAOItem(connection);
 		ArrayList<Item> listeItems = items.getAll();
+		modelTable = vue.getModel();
+		modelTable.setListe(listeItems);
+			
 		
-		int nbItems = listeItems.size();
-		for (int i=0; i<nbItems; i++) {
-			String codeQuestion = String.valueOf(listeItems.get(i).getCodeQuestion());
-			String codeQuizz = String.valueOf(listeItems.get(i).getCodeQuizz());
-			String reponseJoueur = listeItems.get(i).getReponseJoueur();
-			
-			vue.getTable().setValueAt(codeQuestion, i, 0);
-			vue.getTable().setValueAt(codeQuizz,i,1);
-			vue.getTable().setValueAt(reponseJoueur, i, 2);
-			
-		}
 	}
 	
 	public void setVue(IPanelTableItem vue) {
 		this.vue = vue;
-		afficheTableau();
+		//this.remplissageTableau();
 	}
 
 }

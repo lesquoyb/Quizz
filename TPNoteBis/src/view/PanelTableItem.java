@@ -32,12 +32,15 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
     private JLabel labReponse;
     private JLabel labQuizz;
     private JLabel labQuestion;
+    private ModelTableItem modelTable;
     private JPanel jPanel2;
+    //private CtrlItem controleur;
 	
 	public PanelTableItem(CtrlItem controleurItem	){
 		
         panScrollItem = new JScrollPane();
         tabItem = new JTable();
+        controleurItem.setVue(this);
 
         jPanel2 = new JPanel();
         labReponse = new JLabel();
@@ -50,7 +53,8 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
         btnValiderItem = new JButton();
 
         this.btnSupprimerItem.addActionListener(controleurItem);
-        tabItem.setModel(new ModelTableItem());
+        modelTable = new ModelTableItem();
+        tabItem.setModel(modelTable);
         
         panScrollItem.setViewportView(tabItem);
 
@@ -137,8 +141,14 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
 	
 	
     @Override
+	public ModelTableItem getModel() {
+		return modelTable;
+	}
+
+
+	@Override
 	public void rafraichirTable() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

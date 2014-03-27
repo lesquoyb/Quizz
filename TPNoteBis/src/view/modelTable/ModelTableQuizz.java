@@ -1,17 +1,25 @@
 package view.modelTable;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.AbstractTableModel;
 
-public class ModelTableQuizz extends DefaultTableModel {
+import model.metier.Quizz;
+
+public class ModelTableQuizz extends AbstractTableModel {
 
 	private final static String[] titres ={  "code_quizz", "date_quizz", "nb_question_quizz", "code_joueur"};
 	private final static Class[] types = { int.class , Date.class, int.class, int.class};
-	
+	private ArrayList<Quizz> quizz;
 	
 	public ModelTableQuizz(){
-		super( new Object [][] {  },titres	);
+		super();
+	}
+	
+	public void setListe(ArrayList<Quizz> quizzSet){
+		quizz = quizzSet;
+		this.fireTableDataChanged();
 	}
 
     @Override
@@ -23,6 +31,35 @@ public class ModelTableQuizz extends DefaultTableModel {
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
     }
+    
+	@Override
+	public int getColumnCount() {
+		return 4;
+	}
+
+
+	@Override
+	public int getRowCount() {
+		return quizz.size();
+	}
+
+
+	@Override
+	public Object getValueAt(int row, int column) {
+		Object objet = null;
+		
+		switch (column){
+		
+		case 0: objet = quizz.get(row).getCode();
+		case 1: objet = quizz.get(row).getDate();
+		case 2: objet = quizz.get(row).getNombreQuestion();
+		case 3: objet = quizz.get(row).getJoueur().getCode();
+		}
+		
+		return objet;
+		
+		
+	}
     
 }
 

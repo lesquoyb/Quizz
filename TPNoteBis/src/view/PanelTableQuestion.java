@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -12,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.table.DefaultTableModel;
 
+import model.metier.Item;
+import model.metier.Question;
 import view.interfaces.IPanelTableQuestion;
 import view.modelTable.ModelTableQuestion;
 import controller.CtrlQuestion;
@@ -28,7 +32,10 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 	private JScrollPane scrollTexte;
 	private JTable tabQuestion;
 	
+	private ModelTableQuestion modelTable;
+	
 	public PanelTableQuestion(CtrlQuestion controleur){
+		controleur.setVue(this);
 		tabQuestion = new JTable(new ModelTableQuestion());
 		scrollTexte = new JScrollPane();
 		texte = new JTextArea();
@@ -44,6 +51,9 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
         btnSupprimerQuestion = new JButton();
         btnValiderQuestion = new JButton();
         scrollPane = new JScrollPane();
+        
+        modelTable = new ModelTableQuestion();
+        tabQuestion.setModel(modelTable);
         
 
         btnValiderQuestion.setText("Valider");
@@ -137,6 +147,33 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 	@Override
 	public JTable getTable() {
 		return tabQuestion;
+	}
+
+	@Override
+	public ArrayList<Question> getSelection() {
+		int[] selected = tabQuestion.getSelectedRows();
+		ArrayList<Question>listeRetour = new ArrayList<Question>();
+		for (int i : selected){
+			String texte = (String) tabQuestion.getValueAt(i, 0);
+			String reponse = (String) tabQuestion.getValueAt(i, 1);
+			listeRetour.add(new Question(texte,reponse));
+		}
+		return listeRetour;
+	}
+
+	@Override
+	public String getTexte() {
+		return this.texte.getText();
+	}
+
+	@Override
+	public String getReponse() {
+		return this.reponseQuestion.getText();
+	}
+
+	@Override
+	public ModelTableQuestion getModel() {
+		return modelTable;
 	}
 	
 	

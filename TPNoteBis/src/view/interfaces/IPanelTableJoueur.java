@@ -3,6 +3,7 @@ package view.interfaces;
 import java.util.ArrayList;
 
 import model.metier.Joueur;
+import view.modelTable.ModelTableJoueur;
 
 public interface IPanelTableJoueur extends IPanelTable{
 	
@@ -13,6 +14,8 @@ public interface IPanelTableJoueur extends IPanelTable{
 	public String getMdpJoueur();
 	
 	public String getMailJoueur();
+	
+	public ModelTableJoueur getModel();
 
 
 }
