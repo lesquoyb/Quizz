@@ -16,6 +16,7 @@ public class ModelTableQuestion  extends AbstractTableModel {
 	
 	public ModelTableQuestion(){
 		super();
+		questions = new ArrayList<Question>();
 	}
 	
 	public void setListe(ArrayList<Question> questionsSet){

@@ -14,6 +14,7 @@ public class ModelTableItem extends AbstractTableModel{
 	
 	public ModelTableItem(){
 		super();
+		items = new ArrayList<Item>();
 	}
 	
 	public void setListe(ArrayList<Item> itemsSet){

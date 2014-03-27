@@ -17,6 +17,7 @@ public class ModelTableJoueur extends AbstractTableModel {
 	
 	public ModelTableJoueur(){
 		super();
+		joueurs = new ArrayList<Joueur>();
 	}
 	
 	public void setListe(ArrayList<Joueur> joueursSet){

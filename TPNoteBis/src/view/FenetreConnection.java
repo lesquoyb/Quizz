@@ -48,7 +48,7 @@ public class FenetreConnection extends JFrame {
 				}
 			}
 		}
-		FenetreAuthent f = new FenetreAuthent(connection);
+		FenetreGestion f = new FenetreGestion(connection);
 		this.dispose();
 	}
 

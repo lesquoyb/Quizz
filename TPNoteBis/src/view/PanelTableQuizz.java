@@ -1,5 +1,7 @@
 package view;
 
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
@@ -12,6 +14,10 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.ListSelectionModel;
 
+import model.dao.DAOJoueur;
+import model.dao.MaConnection;
+import model.metier.Joueur;
+import model.metier.Question;
 import model.metier.Quizz;
 import view.interfaces.IPanelTableQuizz;
 import view.modelTable.ModelTableQuizz;
@@ -148,8 +154,26 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 
 	@Override
 	public ArrayList<Quizz> getSelection() {
-		// TODO Auto-generated method stub
-		return null;
+		int[] selected = tabQuizz.getSelectedRows();
+		ArrayList<Quizz>listeRetour = new ArrayList<Quizz>();
+		
+		for (int i : selected){
+			
+			int nbQuestion  = Integer.parseInt(this.getNbQuestion());
+			Date date = Date.valueOf(this.getDate());
+			int codeJoueur = Integer.parseInt(this.getCodeJoueur());
+			
+			Joueur joueurQuizz = new Joueur();
+			joueurQuizz.setCode(codeJoueur);
+			
+			ArrayList<String> reponses = new ArrayList<String>();
+			ArrayList<Question> questions = new ArrayList<Question>();
+
+			listeRetour.add(new Quizz(nbQuestion,date,reponses,questions,joueurQuizz));
+			
+		}
+		return listeRetour;
+
 	}
 
 

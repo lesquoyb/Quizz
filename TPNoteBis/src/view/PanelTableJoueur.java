@@ -37,7 +37,7 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
     private ModelTableJoueur modelTable;
     
 	public PanelTableJoueur(CtrlJoueur controleurJoueur){
-		modelTable = new ModelTableJoueur();
+			modelTable = new ModelTableJoueur();
 	        panScrollJoueur = new JScrollPane();
 	        tabJoueur = new JTable();
 	        
