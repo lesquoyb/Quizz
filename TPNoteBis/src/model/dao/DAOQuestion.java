@@ -120,7 +120,7 @@ public class DAOQuestion extends DAO<Question> {
 	@Override
 	public void insert(Question objet) throws SQLException {
 		String requete = "INSERT INTO question (texte_question,reponse_question) VALUES(?,?)";
-		PreparedStatement prep = connection.prepareStatement(requete);
+		PreparedStatement prep = connection.prepareStatement(requete,PreparedStatement.RETURN_GENERATED_KEYS);
 		prep.setString(1, objet.getTexte());
 		prep.setString(2, objet.getReponse());
 		prep.executeUpdate();
