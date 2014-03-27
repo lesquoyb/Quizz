@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.dao.DAOItem;
 import model.dao.DAOQuestion;
 import model.metier.Item;
@@ -41,7 +43,7 @@ public class CtrlQuestion implements ActionListener{
 				try {
 					questions.delete(question);
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Echec de la suppression", "Suppression échouée", JOptionPane.ERROR_MESSAGE );
 				}	
 			}
 			this.remplissageTableau();
@@ -49,17 +51,25 @@ public class CtrlQuestion implements ActionListener{
 		else if(action.equals("Valider"	)){
 			DAOQuestion questions = new DAOQuestion(connection);
 			
+
+			
 			String texte = vue.getTexte();
 			String reponse = vue.getReponse();
 			
-			Question questionInsert = new Question(texte,reponse);
-			
-			try {
-				questions.insert(questionInsert);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			if ((texte.equals("")) ||(reponse.equals(""))) {
+				JOptionPane.showMessageDialog(null, "Remplissez tout les champs !", "information manquante", JOptionPane.ERROR_MESSAGE);
 			}
-			this.remplissageTableau();
+			else {
+
+				Question questionInsert = new Question(texte,reponse);
+
+				try {
+					questions.insert(questionInsert);
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Echec de l'ajout", "Ajout échoué", JOptionPane.ERROR_MESSAGE );
+				}
+				this.remplissageTableau();
+			}
 		}
 		
 	}

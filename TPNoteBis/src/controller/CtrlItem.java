@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 import model.dao.DAOItem;
@@ -39,7 +40,7 @@ public class CtrlItem implements ActionListener{
 				try {
 					items.delete(item);
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Echec de la suppression", "Suppression échouée", JOptionPane.ERROR_MESSAGE );
 				}		
 			}
 			this.remplissageTableau();
@@ -47,18 +48,33 @@ public class CtrlItem implements ActionListener{
 		else if(action.equals("Valider"	)){
 			DAOItem items = new DAOItem(connection);
 			
-			int codeQuestion = Integer.parseInt(vue.getCodeQuestion());
-			int codeQuizz = Integer.parseInt(vue.getCodeQuizz());
-			String reponseJoueur = vue.getReponseJoueur();
-			
-			Item itemInsert = new Item(codeQuestion,codeQuizz,reponseJoueur);
-			
-			try {
-				items.insert(itemInsert);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			if (( vue.getCodeQuestion().equals("") ) || ( vue.getCodeQuizz().equals("")) || (vue.getReponseJoueur().equals("") )) {
+				
+				JOptionPane.showMessageDialog(null, "Remplissez tout les champs !", "information manquante", JOptionPane.ERROR_MESSAGE);
 			}
-			this.remplissageTableau();
+			
+			else {
+				
+				try {
+					int codeQuestion = Integer.parseInt(vue.getCodeQuestion());
+					int codeQuizz = Integer.parseInt(vue.getCodeQuizz());
+					String reponseJoueur = vue.getReponseJoueur();
+					Item itemInsert = new Item(codeQuestion,codeQuizz,reponseJoueur);
+
+					try {
+						items.insert(itemInsert);
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null, "Echec de l'ajout", "Ajout échoué", JOptionPane.ERROR_MESSAGE );
+					}
+
+				} catch (NumberFormatException e1) {
+
+					JOptionPane.showMessageDialog(null, "Entrées invalides ! (les codes sont des nombres)", "Ajout échoué", JOptionPane.ERROR_MESSAGE );		
+				}
+				this.remplissageTableau();
+
+
+			}
 		}
 	}
 

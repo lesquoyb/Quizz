@@ -55,6 +55,7 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
         btnValiderItem = new JButton();
 
         this.btnSupprimerItem.addActionListener(controleurItem);
+        this.btnValiderItem.addActionListener(controleurItem);
 
         
         panScrollItem.setViewportView(tabItem);

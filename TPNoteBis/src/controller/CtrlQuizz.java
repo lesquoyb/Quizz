@@ -7,6 +7,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.dao.DAOJoueur;
 import model.dao.DAOQuizz;
 import model.metier.Joueur;
@@ -42,32 +44,46 @@ public class CtrlQuizz implements ActionListener{
 				try {
 					quizz.delete(quizzSelect);
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Echec de la suppression", "Suppression échouée", JOptionPane.ERROR_MESSAGE );
 				}	
 			}
 			this.remplissageTableau();
 		}
 		else if(action.equals("Valider"	)){
 			DAOQuizz quizz = new DAOQuizz(connection);
-
-			int nbQuestion  = Integer.parseInt(vue.getNbQuestion());
-			Date date = Date.valueOf(vue.getDate());
-			int codeJoueur = Integer.parseInt(vue.getCodeJoueur());
 			
-			DAOJoueur joueur = new DAOJoueur(connection);
-			Joueur joueurQuizz = joueur.get(codeJoueur);
-			
-			ArrayList<String> reponses = new ArrayList<String>();
-			ArrayList<Question> questions = new ArrayList<Question>();
-
-			Quizz quizzInsert = new Quizz(nbQuestion,date,reponses,questions,joueurQuizz);
-
-			try {
-				quizz.insert(quizzInsert);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			if (( vue.getNbQuestion().equals("")) || ( vue.getCodeJoueur().equals("")) || (vue.getDate().equals("") )) {
+				
+				JOptionPane.showMessageDialog(null, "Remplissez tout les champs !", "information manquante", JOptionPane.ERROR_MESSAGE);
 			}
+			
+			else {
+				
+				try {
+
+					int nbQuestion  = Integer.parseInt(vue.getNbQuestion());
+					Date date = Date.valueOf(vue.getDate());
+					int codeJoueur = Integer.parseInt(vue.getCodeJoueur());
+
+					DAOJoueur joueur = new DAOJoueur(connection);
+					Joueur joueurQuizz = joueur.get(codeJoueur);
+
+					ArrayList<String> reponses = new ArrayList<String>();
+					ArrayList<Question> questions = new ArrayList<Question>();
+
+					Quizz quizzInsert = new Quizz(nbQuestion,date,reponses,questions,joueurQuizz);
+
+					try {
+						quizz.insert(quizzInsert);
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null, "Echec de l'ajout", "Ajout échoué", JOptionPane.ERROR_MESSAGE );
+					}
+				} catch (NumberFormatException e1) {
+
+					JOptionPane.showMessageDialog(null, "Entrées invalides ! (les codes sont des nombres)", "Ajout échoué", JOptionPane.ERROR_MESSAGE );		
+				}
 			this.remplissageTableau();
+			}
 		}
 	}
 

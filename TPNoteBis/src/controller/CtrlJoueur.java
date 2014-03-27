@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.dao.DAOItem;
 import model.dao.DAOJoueur;
 import model.metier.Item;
@@ -31,6 +33,7 @@ public class CtrlJoueur implements ActionListener{
 				
 	}
 	
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
@@ -41,7 +44,7 @@ public class CtrlJoueur implements ActionListener{
 				try {
 					joueurs.delete(joueur);
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Echec de la suppression", "Suppression échouée", JOptionPane.ERROR_MESSAGE );
 				}	
 			}
 			this.remplissageTableau();
@@ -53,14 +56,23 @@ public class CtrlJoueur implements ActionListener{
 			String mdp = vue.getMdpJoueur();
 			String mail = vue.getMailJoueur();
 			
-			Joueur joueurInsert = new Joueur(-1,nom,mdp,mail);
-			
-			try {
-				joueurs.insert(joueurInsert);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			if ((nom.equals("")) ||(mdp.equals("")) || (mail.equals("")) ) {
+				
+				JOptionPane.showMessageDialog(null, "Remplissez tout les champs !", "information manquante", JOptionPane.ERROR_MESSAGE);
 			}
-			this.remplissageTableau();
+			
+			else{
+			
+				Joueur joueurInsert = new Joueur(-1,nom,mdp,mail);
+
+				try {
+					joueurs.insert(joueurInsert);
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Echec de l'ajout", "Ajout échoué", JOptionPane.ERROR_MESSAGE );
+				}
+				this.remplissageTableau();
+			
+			}
 		}
 		
 	}
