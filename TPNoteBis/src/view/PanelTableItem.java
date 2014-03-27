@@ -164,8 +164,8 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
 		int[] selected = tabItem.getSelectedRows();
 		ArrayList<Item>listeRetour = new ArrayList<Item>();
 		for (int i : selected){
-			int code_question = (int) tabItem.getValueAt(i, 0);
-			int code_quizz = (int) tabItem.getValueAt(i, 1);
+			int code_question = Integer.valueOf(String.valueOf(tabItem.getValueAt(i, 0)));
+			int code_quizz = Integer.valueOf(String.valueOf(tabItem.getValueAt(i, 1)));
 			String reponse_joueur = (String) tabItem.getValueAt(i, 2);
 			listeRetour.add(new Item(code_question,code_quizz,reponse_joueur));
 		}

@@ -51,7 +51,7 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 		btnValider = new JButton();
 		btnSupprimer = new JButton();
 		tabQuizz = new JTable();
-        tabQuizz.setModel(new ModelTableQuizz());
+        tabQuizz.setModel(modelTable);
         tabQuizz.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPane1 = new JScrollPane();
         scrollPane1.setViewportView(tabQuizz);
@@ -160,17 +160,17 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 		
 		for (int i : selected){
 			
-			int nbQuestion  = Integer.parseInt(this.getNbQuestion());
-			Date date = Date.valueOf(this.getDate());
-			int codeJoueur = Integer.parseInt(this.getCodeJoueur());
-			
+			int nbQuestion  = (int) modelTable.getValueAt(i, 2);
+			Date date = Date.valueOf(String.valueOf(modelTable.getValueAt(i, 1)));
+			int codeJoueur = (int) modelTable.getValueAt(i, 3);
+			int codeQuizz = (int) modelTable.getValueAt(i, 0);
 			Joueur joueurQuizz = new Joueur();
 			joueurQuizz.setCode(codeJoueur);
 			
 			ArrayList<String> reponses = new ArrayList<String>();
 			ArrayList<Question> questions = new ArrayList<Question>();
 
-			listeRetour.add(new Quizz(nbQuestion,date,reponses,questions,joueurQuizz));
+			listeRetour.add(new Quizz(codeQuizz,nbQuestion,date,reponses,questions,joueurQuizz));
 			
 		}
 		return listeRetour;

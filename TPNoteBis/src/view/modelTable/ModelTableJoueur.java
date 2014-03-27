@@ -62,10 +62,10 @@ public class ModelTableJoueur extends AbstractTableModel {
 		
 		switch (column){
 		
-		case 0: objet = joueurs.get(row).getCode();
-		case 1: objet = joueurs.get(row).getNom();
-		case 2: objet = joueurs.get(row).getMail();
-		case 3: objet = joueurs.get(row).getPasswd();
+		case 0: objet = joueurs.get(row).getCode();break;
+		case 1: objet = joueurs.get(row).getNom();break;
+		case 2: objet = joueurs.get(row).getMail();break;
+		case 3: objet = joueurs.get(row).getPasswd();break;
 		}
 		
 		return objet;

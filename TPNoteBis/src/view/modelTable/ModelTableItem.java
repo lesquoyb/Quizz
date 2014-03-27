@@ -37,6 +37,7 @@ public class ModelTableItem extends AbstractTableModel{
 		return types[arg0];
 	}
 	
+	
 	@Override
 	public Object getValueAt (int row, int column) {
 		
@@ -44,9 +45,9 @@ public class ModelTableItem extends AbstractTableModel{
 		
 		switch (column){
 		
-		case 0: objet = items.get(row).getCodeQuestion();
-		case 1: objet = items.get(row).getCodeQuizz();
-		case 2: objet = items.get(row).getReponseJoueur();
+			case 0: objet = items.get(row).getCodeQuestion();break;
+			case 1: objet = items.get(row).getCodeQuizz();break;
+			case 2: objet = items.get(row).getReponseJoueur();break;
 		}
 		
 		return objet;

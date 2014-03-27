@@ -49,9 +49,9 @@ public class ModelTableQuestion  extends AbstractTableModel {
 		
 		switch (column){
 		
-		case 0: objet = questions.get(row).getCode();
-		case 1: objet = questions.get(row).getTexte();
-		case 2: objet = questions.get(row).getReponse();
+		case 0: objet = questions.get(row).getCode();break;
+		case 1: objet = questions.get(row).getTexte();break;
+		case 2: objet = questions.get(row).getReponse();break;
 		}
 		
 		return objet;

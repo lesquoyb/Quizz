@@ -51,10 +51,10 @@ public class ModelTableQuizz extends AbstractTableModel {
 		
 		switch (column){
 		
-		case 0: objet = quizz.get(row).getCode();
-		case 1: objet = quizz.get(row).getDate();
-		case 2: objet = quizz.get(row).getNombreQuestion();
-		case 3: objet = quizz.get(row).getJoueur().getCode();
+		case 0: objet = quizz.get(row).getCode();break;
+		case 1: objet = quizz.get(row).getDate();break;
+		case 2: objet = quizz.get(row).getNombreQuestion();break;
+		case 3: objet = quizz.get(row).getJoueur().getCode();break;
 		}
 		
 		return objet;

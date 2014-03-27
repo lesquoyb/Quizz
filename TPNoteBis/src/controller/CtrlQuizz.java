@@ -73,8 +73,6 @@ public class CtrlQuizz implements ActionListener{
 		ArrayList<Quizz> listeQuizz = quizz.getAll();
 		modelTable = vue.getModel();
 		modelTable.setListe(listeQuizz);
-			
-		
 	}
 
 	public void setVue(IPanelTableQuizz vue) {
