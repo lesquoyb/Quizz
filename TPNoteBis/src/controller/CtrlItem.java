@@ -40,7 +40,7 @@ public class CtrlItem implements ActionListener{
 				try {
 					items.delete(item);
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Echec de la suppression", "Suppression échouée", JOptionPane.ERROR_MESSAGE );
+					JOptionPane.showMessageDialog(null, "Echec de la suppression:\n"+e1.getMessage(), "Suppression échouée", JOptionPane.ERROR_MESSAGE );
 				}		
 			}
 			this.remplissageTableau();
@@ -60,16 +60,16 @@ public class CtrlItem implements ActionListener{
 					int codeQuizz = Integer.parseInt(vue.getCodeQuizz());
 					String reponseJoueur = vue.getReponseJoueur();
 					Item itemInsert = new Item(codeQuestion,codeQuizz,reponseJoueur);
-
+					vue.viderChamps();
 					try {
 						items.insert(itemInsert);
 					} catch (SQLException e1) {
-						JOptionPane.showMessageDialog(null, "Echec de l'ajout", "Ajout échoué", JOptionPane.ERROR_MESSAGE );
+						JOptionPane.showMessageDialog(null, "Echec de l'ajout:\n"+e1.getMessage(), "Ajout échoué", JOptionPane.ERROR_MESSAGE );
 					}
 
 				} catch (NumberFormatException e1) {
 
-					JOptionPane.showMessageDialog(null, "Entrées invalides ! (les codes sont des nombres)", "Ajout échoué", JOptionPane.ERROR_MESSAGE );		
+					JOptionPane.showMessageDialog(null, "Entrées invalides ! (les codes sont des nombres):\n"+e1.getMessage(), "Ajout échoué", JOptionPane.ERROR_MESSAGE );		
 				}
 				this.remplissageTableau();
 

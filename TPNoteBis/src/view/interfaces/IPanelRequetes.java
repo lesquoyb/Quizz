@@ -19,5 +19,7 @@ public interface IPanelRequetes {
 	public String getMdpJoueur();
 	
 	public String getTexteQuestion();
+	
+	public void viderChamps();
 
 }

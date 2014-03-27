@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import outils.Outils;
 import model.dao.DAOJoueur;
 import model.dao.DAOQuizz;
 import model.metier.Joueur;
@@ -44,7 +45,7 @@ public class CtrlQuizz implements ActionListener{
 				try {
 					quizz.delete(quizzSelect);
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Echec de la suppression", "Suppression échouée", JOptionPane.ERROR_MESSAGE );
+					JOptionPane.showMessageDialog(null, "Echec de la suppression\n"+e1.getMessage(), "Suppression échouée", JOptionPane.ERROR_MESSAGE );
 				}	
 			}
 			this.remplissageTableau();
@@ -62,7 +63,8 @@ public class CtrlQuizz implements ActionListener{
 				try {
 
 					int nbQuestion  = Integer.parseInt(vue.getNbQuestion());
-					Date date = Date.valueOf(vue.getDate());
+					Date date = Outils.createDate(vue.getDate());
+
 					int codeJoueur = Integer.parseInt(vue.getCodeJoueur());
 
 					DAOJoueur joueur = new DAOJoueur(connection);
@@ -75,12 +77,14 @@ public class CtrlQuizz implements ActionListener{
 
 					try {
 						quizz.insert(quizzInsert);
-					} catch (SQLException e1) {
-						JOptionPane.showMessageDialog(null, "Echec de l'ajout", "Ajout échoué", JOptionPane.ERROR_MESSAGE );
-					}
-				} catch (NumberFormatException e1) {
+						vue.viderChamps();
 
-					JOptionPane.showMessageDialog(null, "Entrées invalides ! (les codes sont des nombres)", "Ajout échoué", JOptionPane.ERROR_MESSAGE );		
+					} catch (SQLException e1) {
+						JOptionPane.showMessageDialog(null, "Echec de l'ajout\n"+e1.getMessage(), "Ajout échoué", JOptionPane.ERROR_MESSAGE );
+					}
+				} catch ( IllegalArgumentException e1) {
+
+					JOptionPane.showMessageDialog(null, "Entrées invalides ! (les codes sont des nombres)\n"+e1.getMessage(), "Ajout échoué", JOptionPane.ERROR_MESSAGE );		
 				}
 			this.remplissageTableau();
 			}

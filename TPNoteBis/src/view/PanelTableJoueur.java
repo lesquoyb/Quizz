@@ -37,25 +37,26 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
     private ModelTableJoueur modelTable;
     
 	public PanelTableJoueur(CtrlJoueur controleurJoueur){
-			modelTable = new ModelTableJoueur();
-	        panScrollJoueur = new JScrollPane();
-	        tabJoueur = new JTable();
-	        
+		
+		modelTable = new ModelTableJoueur();
+        panScrollJoueur = new JScrollPane();
+        tabJoueur = new JTable();
+        
 
-	        tabJoueur.setModel(modelTable);
-	        panScrollJoueur.setViewportView(tabJoueur);
-	        
-	        controleurJoueur.setVue(this);
-	        
-	        jPanel3 = new JPanel();
-	        jLabel7 = new JLabel();
-	        jLabel8 = new JLabel();
-	        mdp = new JTextField();
-	        btnValiderJoueur = new JButton();
-	        nom = new JTextField();
-	        mail = new JTextField();
-	        jLabel9 = new JLabel();
-	        btnSupprimerJoueur = new JButton();
+        tabJoueur.setModel(modelTable);
+        panScrollJoueur.setViewportView(tabJoueur);
+        
+        controleurJoueur.setVue(this);
+        
+        jPanel3 = new JPanel();
+        jLabel7 = new JLabel();
+        jLabel8 = new JLabel();
+        mdp = new JTextField();
+        btnValiderJoueur = new JButton();
+        nom = new JTextField();
+        mail = new JTextField();
+        jLabel9 = new JLabel();
+        btnSupprimerJoueur = new JButton();
 
 
         jLabel7.setText("mail joueur");
@@ -157,6 +158,14 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
     @Override
 	public void rafraichirTable() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viderChamps() {
+		mail.setText("");;
+	    mdp.setText("");;
+	    nom.setText("");;
 		
 	}
 

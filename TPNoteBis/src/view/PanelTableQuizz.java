@@ -1,7 +1,7 @@
 package view;
 
+import java.awt.Dimension;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
@@ -14,8 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.ListSelectionModel;
 
-import model.dao.DAOJoueur;
-import model.dao.MaConnection;
 import model.metier.Joueur;
 import model.metier.Question;
 import model.metier.Quizz;
@@ -81,7 +79,7 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
                         .addGap(284, 284, 284)
                         .addComponent(labDate)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(date, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(date, GroupLayout.PREFERRED_SIZE,100, GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(labNbQuestion)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -138,6 +136,14 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 
        
 
+	}
+
+
+	@Override
+	public void viderChamps() {
+	    nbQuestion.setText("");
+	    numero.setText("");
+	    date.setText("");
 	}
 
 

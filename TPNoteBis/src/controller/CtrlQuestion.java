@@ -43,7 +43,7 @@ public class CtrlQuestion implements ActionListener{
 				try {
 					questions.delete(question);
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Echec de la suppression", "Suppression échouée", JOptionPane.ERROR_MESSAGE );
+					JOptionPane.showMessageDialog(null, "Echec de la suppression\n"+e1.getMessage(), "Suppression échouée", JOptionPane.ERROR_MESSAGE );
 				}	
 			}
 			this.remplissageTableau();
@@ -62,11 +62,12 @@ public class CtrlQuestion implements ActionListener{
 			else {
 
 				Question questionInsert = new Question(texte,reponse);
+				vue.viderChamps();
 
 				try {
 					questions.insert(questionInsert);
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Echec de l'ajout", "Ajout échoué", JOptionPane.ERROR_MESSAGE );
+					JOptionPane.showMessageDialog(null, "Echec de l'ajout\n"+e1.getMessage(), "Ajout échoué", JOptionPane.ERROR_MESSAGE );
 				}
 				this.remplissageTableau();
 			}

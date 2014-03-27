@@ -166,4 +166,13 @@ public class PanelRequetes extends JPanel implements IPanelRequetes {
 		return this.texteQuestion.getText();
 	}
 
+	@Override
+	public void viderChamps() {
+		nomJoueur.setText("");
+		mdpJoueur.setText("");
+		codeQuestion.setText("");
+		texteQuestion.setText("");
+	}
+
+	
 }

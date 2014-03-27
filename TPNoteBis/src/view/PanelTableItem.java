@@ -177,6 +177,15 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
 		return this.codeQuestion.getText();
 	}
 	
+	@Override
+	public void viderChamps() {
+		codeQuestion.setText("");
+	    codeQuizz.setText("");;
+	    reponseJoueur.setText("");
+		
+	}
+
+
 	public String getCodeQuizz() {
 		return this.codeQuizz.getText();
 	}

@@ -44,7 +44,7 @@ public class CtrlJoueur implements ActionListener{
 				try {
 					joueurs.delete(joueur);
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Echec de la suppression", "Suppression échouée", JOptionPane.ERROR_MESSAGE );
+					JOptionPane.showMessageDialog(null, "Echec de la suppression:\n"+e1.getMessage(), "Suppression échouée", JOptionPane.ERROR_MESSAGE );
 				}	
 			}
 			this.remplissageTableau();
@@ -67,8 +67,10 @@ public class CtrlJoueur implements ActionListener{
 
 				try {
 					joueurs.insert(joueurInsert);
+					vue.viderChamps();
+					
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Echec de l'ajout", "Ajout échoué", JOptionPane.ERROR_MESSAGE );
+					JOptionPane.showMessageDialog(null, "Echec de l'ajout:\n"+e1.getMessage(), "Ajout échoué", JOptionPane.ERROR_MESSAGE );
 				}
 				this.remplissageTableau();
 			

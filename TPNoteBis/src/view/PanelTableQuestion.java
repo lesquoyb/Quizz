@@ -26,7 +26,6 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 	private JScrollPane panScroll;
 	private JButton btnValiderQuestion;
 	private JButton btnSupprimerQuestion;
-	private JScrollPane scrollPane;
 	private JTextArea texte;
 	private JTextField reponseQuestion;
 	private JScrollPane scrollTexte;
@@ -43,7 +42,7 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 		texte = new JTextArea();
 		texte.setColumns(5);
 		texte.setRows(20);
-		texte.setEnabled(true);
+		texte.setWrapStyleWord(true);
 		scrollTexte.setViewportView(texte);
 		panelSaisie = new JPanel();
 		panScroll = new JScrollPane();
@@ -52,7 +51,6 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
         JLabel jLabel11 = new JLabel("réponse");
         btnSupprimerQuestion = new JButton();
         btnValiderQuestion = new JButton();
-        scrollPane = new JScrollPane();
         
 
         
@@ -65,7 +63,8 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
         btnSupprimerQuestion.setToolTipText("supprime la ligne selectionnée");
         btnSupprimerQuestion.addActionListener(controleur);
         
-        
+        panelSaisie.add(scrollTexte);
+
         GroupLayout panelSaisieLayout = new GroupLayout(panelSaisie);
         panelSaisie.setLayout(panelSaisieLayout);
         panelSaisieLayout.setHorizontalGroup(
@@ -79,7 +78,7 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
                     .addGroup(panelSaisieLayout.createSequentialGroup()
                         .addComponent(label)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollTexte, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)))
                 .addGroup(panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(btnSupprimerQuestion, GroupLayout.Alignment.TRAILING)
@@ -98,7 +97,7 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
                     .addGroup(panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(reponseQuestion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11))
-                    .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollTexte, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValiderQuestion)
@@ -128,10 +127,16 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 	                .addContainerGap()));
 
 	        panScroll.setViewportView(tabQuestion);
-	        panelSaisie.add(scrollTexte);
 	        this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 	}
 	
+	@Override
+	public void viderChamps() {
+		texte.setText("");
+		reponseQuestion.setText("");
+		
+	}
+
 	public void supSelect(){
 		int[] selectionne = tabQuestion.getSelectedRows();
 		DefaultTableModel model = 	(DefaultTableModel) tabQuestion.getModel();

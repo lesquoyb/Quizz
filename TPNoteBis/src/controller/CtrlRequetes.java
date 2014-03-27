@@ -42,14 +42,14 @@ public class CtrlRequetes implements ActionListener {
 			Joueur resultat = joueur.get(nomEntree, mdpEntree);
 			
 			if (resultat == null) {
-				JOptionPane.showMessageDialog(null, "Ce joueur n'existe pas !", "Joueur inexistant", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Ce joueur n'existe pas !\nPeut être avez vous  fait une faute de frappe.", "Joueur inexistant", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
 				String nomResultat = resultat.getNom();
 				String mdpResultat = resultat.getPasswd();
 				String mailResultat = resultat.getMail();
 				int codeResultat = resultat.getCode();
-				
+				vue.viderChamps();
 				JOptionPane.showMessageDialog(null, "Nom : "+ nomResultat + "\nMot de Passe : "+ mdpResultat + "\nEmail : " + mailResultat + "\nCode : " + codeResultat, "Joueur Trouvé",JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
@@ -59,7 +59,7 @@ public class CtrlRequetes implements ActionListener {
 			Question resultat = question.get(codeEntree);
 			
 			if (resultat == null) {
-				JOptionPane.showMessageDialog(null, "Aucune question n'a ce code", "Question Inexistante", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Aucune question n'a ce code\nPeut être avez vous  fait une faute de frappe.", "Question Inexistante", JOptionPane.ERROR_MESSAGE);
 			}
 			else {
 				int codeResultat = resultat.getCode();
@@ -67,7 +67,7 @@ public class CtrlRequetes implements ActionListener {
 				String reponseResultat = resultat.getReponse();
 				
 				JOptionPane.showMessageDialog(null, "Question : "+ texteResultat + "\nReponse : " + reponseResultat + "\nCode : "+ codeResultat, "Question Trouvée", JOptionPane.INFORMATION_MESSAGE);
-				
+				vue.viderChamps();
 			}
 		}
 		else if (ordre.equals("rechercheTexteQuestion")){
@@ -88,9 +88,9 @@ public class CtrlRequetes implements ActionListener {
 					String texteResultat = resultat.getTexte();
 					String reponseResultat = resultat.getReponse();
 					int numeroQuestion = i+1;
-					
 					afficheResultat = afficheResultat+"Question "+numeroQuestion+" : "+texteResultat+"        Reponse : "+reponseResultat+"        Code : "+codeResultat+"\n";
 				}
+				vue.viderChamps();
 				JOptionPane.showMessageDialog(null, afficheResultat, "Liste des Questions trouvées", JOptionPane.INFORMATION_MESSAGE);
 					
 					
