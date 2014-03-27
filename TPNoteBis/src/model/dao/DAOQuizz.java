@@ -106,7 +106,7 @@ public class DAOQuizz extends DAO<Quizz>{
 					listeReponse.add(item.getReponseJoueur());
 				}
 				liste.add(new Quizz(res.getInt("code_quizz"),
-									res.getInt("nb_question_quizz"), 
+									res.getInt("nb_questions_quizz"), 
 									res.getDate("date_quizz"),
 									listeReponse,
 									listeQuestions,

@@ -13,6 +13,7 @@ import javax.swing.LayoutStyle;
 
 import model.metier.Joueur;
 import view.interfaces.IPanelTableJoueur;
+import view.modelTable.ModelTableItem;
 import view.modelTable.ModelTableJoueur;
 import controller.CtrlJoueur;
 
@@ -33,10 +34,15 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
     private JTextField mail;
     private JTextField mdp;
     private JTextField nom;
+    private ModelTableJoueur modelTable;
     
 	public PanelTableJoueur(CtrlJoueur controleurJoueur){
+		modelTable = new ModelTableJoueur();
 	        panScrollJoueur = new JScrollPane();
 	        tabJoueur = new JTable();
+	        
+	        controleurJoueur.setVue(this);
+	        
 	        jPanel3 = new JPanel();
 	        jLabel7 = new JLabel();
 	        jLabel8 = new JLabel();
@@ -47,7 +53,7 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
 	        jLabel9 = new JLabel();
 	        btnSupprimerJoueur = new JButton();
 
-        tabJoueur.setModel(new ModelTableJoueur());
+        tabJoueur.setModel(modelTable);
         panScrollJoueur.setViewportView(tabJoueur);
 
         jLabel7.setText("mail joueur");
@@ -170,6 +176,11 @@ public class PanelTableJoueur extends JPanel implements IPanelTableJoueur{
 	@Override
 	public String getMailJoueur() {
 		return mail.getText();
+	}
+
+	@Override
+	public ModelTableJoueur getModel() {
+		return modelTable;
 	}
 	
 	

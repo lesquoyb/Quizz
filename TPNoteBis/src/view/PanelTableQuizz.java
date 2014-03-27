@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.ListSelectionModel;
 
+import model.metier.Quizz;
 import view.interfaces.IPanelTableQuizz;
 import view.modelTable.ModelTableQuizz;
 import controller.CtrlQuizz;
@@ -28,9 +31,13 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
     private JLabel labNbQuestion;
     private JLabel labNumJoueur;
     private JLabel labDate;
+    
+    private ModelTableQuizz modelTable;
 
 	
 	public PanelTableQuizz(CtrlQuizz controleurQuizz){
+		
+		controleurQuizz.setVue(this);
 		labDate = new JLabel("date");
 		labNbQuestion = new JLabel("nombre de questions");
         labNumJoueur = new JLabel("numero joueur");
@@ -136,6 +143,37 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 	@Override
 	public JTable getTable() {
 		return tabQuizz;
+	}
+
+
+	@Override
+	public ArrayList<Quizz> getSelection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ModelTableQuizz getModel() {
+		return modelTable;
+	}
+
+
+	@Override
+	public String getNbQuestion() {
+		return this.nbQuestion.getText();
+	}
+
+
+	@Override
+	public String getDate() {
+		return this.date.getText();
+	}
+
+
+	@Override
+	public String getCodeJoueur() {
+		return this.numero.getText();
 	}
 	
 	

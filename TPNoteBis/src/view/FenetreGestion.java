@@ -57,14 +57,14 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
         
         controleurRequetes = new CtrlRequetes();
         
-        controleurQuestion = new CtrlQuestion();
-    	controleurQuestion.setVue(panQuestion);
+        controleurQuestion = new CtrlQuestion(connection);
+
         controleurItem = new CtrlItem(connection);
-        controleurItem.setVue(panItem);
-        controleurJoueur = new CtrlJoueur();
-        controleurJoueur.setVue(panJoueur);
-        controleurQuizz = new CtrlQuizz();
-        controleurQuizz.setVue(panQuizz);
+
+        controleurJoueur = new CtrlJoueur(connection);
+
+        controleurQuizz = new CtrlQuizz(connection);
+
 
         
         
@@ -74,7 +74,13 @@ public class FenetreGestion extends JFrame implements IFenetreGestion {
         panQuestion = new PanelTableQuestion(controleurQuestion);
         panRequetes = new PanelRequetes(controleurRequetes);
         
+        
         controleurRequetes.setVue(panRequetes);
+    	controleurQuestion.setVue(panQuestion);
+        controleurItem.setVue(panItem);
+        controleurJoueur.setVue(panJoueur);
+        controleurQuizz.setVue(panQuizz);
+        
 
 
 

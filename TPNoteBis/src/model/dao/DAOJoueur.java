@@ -126,9 +126,9 @@ public class DAOJoueur extends DAO<Joueur> {
 			ResultSet res = prep.executeQuery();
 			while(res.next()){
 				liste.add(new Joueur(res.getInt("code_joueur"), 
-									res.getString("nom"),
-									res.getString("passwd"),
-									res.getString("mail")));
+									res.getString("nom_joueur"),
+									res.getString("passwd_joueur"),
+									res.getString("mail_joueur")));
 			}
 			fermerStatement(prep);
 			fermerResultat(res);
