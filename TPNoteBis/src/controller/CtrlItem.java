@@ -23,6 +23,13 @@ public class CtrlItem implements ActionListener{
 		connection = con; 
 	}
 	
+	public void remplissageTableau() {
+		DAOItem items = new DAOItem(connection);
+		ArrayList<Item> listeItems = items.getAll();
+		modelTable = vue.getModel();
+		modelTable.setListe(listeItems);
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action= e.getActionCommand();
@@ -35,6 +42,7 @@ public class CtrlItem implements ActionListener{
 					e1.printStackTrace();
 				}		
 			}
+			this.remplissageTableau();
 		}
 		else if(action.equals("Valider"	)){
 			DAOItem items = new DAOItem(connection);
@@ -50,6 +58,7 @@ public class CtrlItem implements ActionListener{
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			this.remplissageTableau();
 		}
 	}
 
@@ -57,12 +66,6 @@ public class CtrlItem implements ActionListener{
 		return vue;
 	}
 	
-	public void remplissageTableau() {
-		DAOItem items = new DAOItem(connection);
-		ArrayList<Item> listeItems = items.getAll();
-		modelTable = vue.getModel();
-		modelTable.setListe(listeItems);
-	}
 	
 	public void setVue(IPanelTableItem vue) {
 		this.vue = vue;

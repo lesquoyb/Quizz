@@ -23,6 +23,14 @@ public class CtrlJoueur implements ActionListener{
 		connection = con;
 	}
 	
+	public void remplissageTableau() {
+		DAOJoueur joueurs = new DAOJoueur(connection);
+		ArrayList<Joueur> listeJoueurs = joueurs.getAll();
+		modelTable = vue.getModel();
+		modelTable.setListe(listeJoueurs);
+				
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
@@ -36,6 +44,7 @@ public class CtrlJoueur implements ActionListener{
 					e1.printStackTrace();
 				}	
 			}
+			this.remplissageTableau();
 		}
 		else if(action.equals("Valider"	)){
 			DAOJoueur joueurs = new DAOJoueur(connection);
@@ -51,6 +60,7 @@ public class CtrlJoueur implements ActionListener{
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			this.remplissageTableau();
 		}
 		
 	}
@@ -59,14 +69,6 @@ public class CtrlJoueur implements ActionListener{
 		return vue;
 	}
 	
-	public void remplissageTableau() {
-		DAOJoueur joueurs = new DAOJoueur(connection);
-		ArrayList<Joueur> listeJoueurs = joueurs.getAll();
-		modelTable = vue.getModel();
-		modelTable.setListe(listeJoueurs);
-			
-		
-	}
 
 	public void setVue(IPanelTableJoueur vue) {
 		this.vue = vue;

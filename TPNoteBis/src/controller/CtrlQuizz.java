@@ -25,6 +25,13 @@ public class CtrlQuizz implements ActionListener{
 		connection = con;
 	}
 	
+	public void remplissageTableau() {
+		DAOQuizz quizz = new DAOQuizz(connection);
+		ArrayList<Quizz> listeQuizz = quizz.getAll();
+		modelTable = vue.getModel();
+		modelTable.setListe(listeQuizz);
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -38,7 +45,7 @@ public class CtrlQuizz implements ActionListener{
 					e1.printStackTrace();
 				}	
 			}
-			
+			this.remplissageTableau();
 		}
 		else if(action.equals("Valider"	)){
 			DAOQuizz quizz = new DAOQuizz(connection);
@@ -60,6 +67,7 @@ public class CtrlQuizz implements ActionListener{
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			this.remplissageTableau();
 		}
 	}
 
@@ -68,12 +76,6 @@ public class CtrlQuizz implements ActionListener{
 		return vue;
 	}
 	
-	public void remplissageTableau() {
-		DAOQuizz quizz = new DAOQuizz(connection);
-		ArrayList<Quizz> listeQuizz = quizz.getAll();
-		modelTable = vue.getModel();
-		modelTable.setListe(listeQuizz);
-	}
 
 	public void setVue(IPanelTableQuizz vue) {
 		this.vue = vue;
