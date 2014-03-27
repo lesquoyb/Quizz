@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,6 +15,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.table.DefaultTableModel;
+
+import org.junit.experimental.ParallelComputer;
 
 import model.metier.Item;
 import model.metier.Question;
@@ -67,27 +71,46 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
 
         GroupLayout panelSaisieLayout = new GroupLayout(panelSaisie);
         panelSaisie.setLayout(panelSaisieLayout);
-        panelSaisieLayout.setHorizontalGroup(
-            panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(panelSaisieLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addGroup(panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelSaisieLayout.createSequentialGroup()
-                        .addComponent(btnValiderQuestion)
-                        .addGap(76, 76, 76))
-                    .addGroup(panelSaisieLayout.createSequentialGroup()
-                        .addComponent(label)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollTexte, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)))
-                .addGroup(panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSupprimerQuestion, GroupLayout.Alignment.TRAILING)
-                    .addGroup(GroupLayout.Alignment.TRAILING, panelSaisieLayout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reponseQuestion, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(361, Short.MAX_VALUE))
-        );
+        
+       ParallelGroup groupPara = panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.TRAILING);
+       SequentialGroup seqHoriz1 = panelSaisieLayout.createSequentialGroup();
+       seqHoriz1.addComponent(btnValiderQuestion);
+       seqHoriz1.addGap(76, 76, 76);
+       
+       SequentialGroup seqHoriz2 = panelSaisieLayout.createSequentialGroup();
+       
+       
+       seqHoriz2.addComponent(label);
+       seqHoriz2.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
+       seqHoriz2.addComponent(scrollTexte, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE);
+       seqHoriz2.addGap(58, 58, 58);
+       
+       groupPara.addGroup(seqHoriz1);
+       groupPara.addGroup(seqHoriz2);
+       
+
+       SequentialGroup seqGroup =  panelSaisieLayout.createSequentialGroup();
+       seqGroup.addComponent(jLabel11);
+       seqGroup.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
+       seqGroup.addComponent(reponseQuestion, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE);
+       
+       ParallelGroup groupPara2 = panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.TRAILING);
+       groupPara2.addComponent(btnSupprimerQuestion, GroupLayout.Alignment.TRAILING);
+       groupPara2.addGroup(GroupLayout.Alignment.TRAILING,seqGroup);
+       
+       
+       SequentialGroup sequHoriz = panelSaisieLayout.createSequentialGroup();
+       sequHoriz.addGap(116, 116, 116);
+       sequHoriz.addGroup(groupPara) ;
+       sequHoriz.addGroup(groupPara2);
+       sequHoriz.addContainerGap(361, Short.MAX_VALUE);
+
+       
+        ParallelGroup groupHoriz = panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.LEADING);
+        groupHoriz.addGroup(sequHoriz);
+        
+        panelSaisieLayout.setHorizontalGroup(groupHoriz);
+       
         panelSaisieLayout.setVerticalGroup(
             panelSaisieLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(panelSaisieLayout.createSequentialGroup()
