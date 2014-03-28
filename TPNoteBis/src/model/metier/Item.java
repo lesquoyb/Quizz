@@ -35,6 +35,27 @@ public class Item {
 		this.reponse_joueur = reponse_joueur;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		if (code_question != other.code_question)
+			return false;
+		if (code_quizz != other.code_quizz)
+			return false;
+		if (reponse_joueur == null) {
+			if (other.reponse_joueur != null)
+				return false;
+		} else if (!reponse_joueur.equals(other.reponse_joueur))
+			return false;
+		return true;
+	}
+	
 	
 	
 }
