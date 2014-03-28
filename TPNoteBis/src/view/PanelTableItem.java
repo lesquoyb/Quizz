@@ -1,12 +1,16 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
@@ -34,7 +38,6 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
     private JLabel labQuestion;
     private ModelTableItem modelTable;
     private JPanel jPanel2;
-    //private CtrlItem controleur;
 	
 	public PanelTableItem(CtrlItem controleurItem	){
 		
@@ -71,76 +74,44 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
 
         btnValiderItem.setText("Valider");
         btnValiderItem.setToolTipText("valide les informations entrées");
-
-        GroupLayout groupLayout = new GroupLayout(jPanel2);
-        jPanel2.setLayout(groupLayout);
-        groupLayout.setHorizontalGroup(
-        	groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(groupLayout.createSequentialGroup()
-                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(groupLayout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(labQuestion)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(codeQuestion, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(labQuizz)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(codeQuizz, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labReponse)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reponseJoueur, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))
-                    .addGroup(groupLayout.createSequentialGroup()
-                        .addGap(363, 363, 363)
-                        .addComponent(btnValiderItem)
-                        .addGap(118, 118, 118)
-                        .addComponent(btnSupprimerItem)))
-                .addContainerGap(358, Short.MAX_VALUE))
-        );
-        groupLayout.setVerticalGroup(
-        	groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(groupLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(codeQuestion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(codeQuizz, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(reponseJoueur, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labQuestion)
-                    .addComponent(labQuizz)
-                    .addComponent(labReponse))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnValiderItem)
-                    .addComponent(btnSupprimerItem))
-                .addGap(36, 36, 36))
-        );
-
-        GroupLayout panItemLayout = new GroupLayout(this);
-        this.setLayout(panItemLayout);
-        panItemLayout.setHorizontalGroup(
-            panItemLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panItemLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(panItemLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(panScrollItem, GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        panItemLayout.setVerticalGroup(
-            panItemLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, panItemLayout.createSequentialGroup()
-                .addContainerGap(429, Short.MAX_VALUE)
-                .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(panItemLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(panItemLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(panScrollItem, GroupLayout.PREFERRED_SIZE, 389, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(196, Short.MAX_VALUE)))
-        );
+        
+        initComposants();
 	}
 	
+		private void initComposants(){ 
+			   this.setLayout(new BorderLayout());
+			   JPanel panCentre = new JPanel();
+			   panScrollItem.setPreferredSize(new Dimension(1200, 500));
+			   panCentre.add(panScrollItem);
+			   this.add(panCentre,BorderLayout.CENTER);
+			   
+			   JPanel panSud = new JPanel();
+			   codeQuestion.setPreferredSize(new Dimension(100,20));
+			   codeQuizz.setPreferredSize(new Dimension(100,20));
+			   reponseJoueur.setPreferredSize(new Dimension(200,20));
+			   panSud.setPreferredSize(new Dimension(this.getWidth()-4,110));
+			   JPanel interm = new JPanel();
+			   BoxLayout box = new BoxLayout(interm, BoxLayout.PAGE_AXIS);
+			   interm.setLayout(box);
+			   JPanel entrees = new JPanel();
+			   JPanel boutons = new JPanel();
+			   boutons.add(btnValiderItem);
+			   boutons.add(btnSupprimerItem);
+			   entrees.add(labQuestion);
+			   entrees.add(codeQuestion);
+			   entrees.add(labQuizz);
+			   entrees.add(codeQuizz);
+			   entrees.add(labReponse);
+			   entrees.add(reponseJoueur);
+			   interm.add(entrees);
+			   interm.add(boutons);
+			   JTabbedPane onglet = new JTabbedPane();
+			   onglet.addTab("Ajouter / Supprimer", null, interm, "saisir un élément à ajouter à la base de données ou selectionner dans le tableau un/des éléments à supprimer.");
+			   panSud.add(onglet);
+			   this.add(panSud,BorderLayout.SOUTH);
+			   
+		}
+	   
 	
     @Override
 	public ModelTableItem getModel() {

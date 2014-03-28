@@ -53,9 +53,10 @@ public class FenetreGestion extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        this.getContentPane().setBackground(new Color(80,60,60));
+        this.getContentPane().setBackground(new Color(0xFFDA8C));
         
         onglets = new JTabbedPane();
+        
         
         controleurRequetes = new CtrlRequetes();
         
@@ -71,6 +72,7 @@ public class FenetreGestion extends JFrame {
         
         
         panQuizz = new PanelTableQuizz(controleurQuizz);
+        panQuizz.setBackground(new Color(0x34393E));
         panItem = new PanelTableItem(controleurItem);
         panJoueur = new PanelTableJoueur(controleurJoueur);
         panQuestion = new PanelTableQuestion(controleurQuestion);

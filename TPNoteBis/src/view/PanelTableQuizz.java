@@ -1,19 +1,21 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.ParallelGroup;
-import javax.swing.GroupLayout.SequentialGroup;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.Border;
 
 import model.metier.Joueur;
 import model.metier.Question;
@@ -56,8 +58,11 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
         scrollPane1.setViewportView(tabQuizz);
         jPanel1 = new JPanel();
         date = new JTextField();
+        date.setPreferredSize(new Dimension(200,20));
         numero = new JTextField();
+        numero.setPreferredSize(new Dimension(80,20));
         nbQuestion = new JTextField();
+        nbQuestion.setPreferredSize(new Dimension(80,20));
         btnValider.setText("Valider");
         btnValider.setToolTipText("valide les informations entrés");
         btnValider.addActionListener(controleurQuizz);
@@ -70,101 +75,35 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 	}
         
        private void initComposants(){ 
+    	   this.setLayout(new BorderLayout());
+    	   JPanel panCentre = new JPanel();
+    	   scrollPane1.setPreferredSize(new Dimension(1200, 500));
+    	   panCentre.add(scrollPane1);
+    	   this.add(panCentre,BorderLayout.CENTER);
     	   
+    	   JPanel panSud = new JPanel();
     	   
-    	   
-        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
-        
-        // Alignement Horizontal
-        ParallelGroup groupHorizontal = jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING);
-        SequentialGroup groupSequentiel = jPanel1Layout.createSequentialGroup();
-        SequentialGroup groupSequentiel2 = jPanel1Layout.createSequentialGroup();
-        SequentialGroup groupSequentiel3 = jPanel1Layout.createSequentialGroup();
-
-
-        
-        
-        groupSequentiel2.addGap(284, 284, 284);
-        groupSequentiel2.addComponent(labDate);
-        groupSequentiel2 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
-        groupSequentiel2.addComponent(date, GroupLayout.PREFERRED_SIZE,100, GroupLayout.PREFERRED_SIZE);
-        groupSequentiel2.addGap(28, 28, 28);
-        groupSequentiel2.addComponent(labNbQuestion);
-        groupSequentiel2.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
-        groupSequentiel2.addComponent(nbQuestion, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE);
-        groupSequentiel2.addGap(18, 18, 18);
-        groupSequentiel2.addComponent(labNumJoueur);
-        groupSequentiel2.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
-        groupSequentiel2.addComponent(numero, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE);
-        
-        groupSequentiel3.addGap(383, 383, 383);
-        groupSequentiel3.addComponent(btnValider);
-        groupSequentiel3.addGap(118, 118, 118);
-        groupSequentiel3.addComponent(btnSupprimer);
-        
-        ParallelGroup groupParallel = jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING);
-        groupParallel.addGroup(groupSequentiel2);
-        groupParallel.addGroup(groupSequentiel3);
-        groupSequentiel.addGroup(groupParallel);
-        groupSequentiel.addContainerGap(375, Short.MAX_VALUE);
-
-        groupHorizontal.addGroup(groupSequentiel);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(groupHorizontal);
-        	
-        //Alignement Vertical
-        ParallelGroup parallelVertical = jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE);
-        ParallelGroup parallelVertical2 = jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE);
-
-        parallelVertical.addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
-        parallelVertical.addComponent(nbQuestion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
-        parallelVertical.addComponent(numero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
-        parallelVertical.addComponent(labDate);
-        parallelVertical.addComponent(labNbQuestion);
-        parallelVertical.addComponent(labNumJoueur);
-        
-        parallelVertical2.addComponent(btnValider);
-        parallelVertical2.addComponent(btnSupprimer);
-        
-        SequentialGroup sequentielVertical = jPanel1Layout.createSequentialGroup();
-        sequentielVertical.addContainerGap();
-        sequentielVertical.addGroup(parallelVertical);
-        sequentielVertical.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE);
-        sequentielVertical.addGroup(parallelVertical2);
-        sequentielVertical.addContainerGap();
-        ParallelGroup groupVertical =  jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING);
-        groupVertical.addGroup(GroupLayout.Alignment.TRAILING, sequentielVertical);
-        
-        jPanel1Layout.setVerticalGroup(groupVertical);
-        
-        
-        GroupLayout panQuizzLayout = new GroupLayout(this);
-        SequentialGroup groupQuizzHoriz = panQuizzLayout.createSequentialGroup();
-        groupQuizzHoriz.addContainerGap();
-        groupQuizzHoriz.addComponent(scrollPane1);
-        groupQuizzHoriz.addContainerGap();
-        this.setLayout(panQuizzLayout);
-       ParallelGroup quizzHoriz = panQuizzLayout.createParallelGroup(GroupLayout.Alignment.LEADING);
-       quizzHoriz.addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
-       quizzHoriz.addGroup(groupQuizzHoriz);
-       
-        panQuizzLayout.setHorizontalGroup(quizzHoriz);
-
-        
-        SequentialGroup groupQuizzVert = panQuizzLayout.createSequentialGroup();
-        groupQuizzVert.addContainerGap();
-        groupQuizzVert.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 389,GroupLayout.PREFERRED_SIZE);;
-        groupQuizzVert.addGap(18, 18, 18);
-        groupQuizzVert.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE);
-        groupQuizzVert.addContainerGap(59, Short.MAX_VALUE);
-        
-        ParallelGroup quizzVert = panQuizzLayout.createParallelGroup(GroupLayout.Alignment.LEADING);
-        quizzVert.addGroup(groupQuizzVert);
-       
-        panQuizzLayout.setVerticalGroup(quizzVert);
-       
-
-	}
+    	   panSud.setPreferredSize(new Dimension(this.getWidth()-4,110));
+    	   JPanel interm = new JPanel();
+    	   BoxLayout box = new BoxLayout(interm, BoxLayout.PAGE_AXIS);
+    	   interm.setLayout(box);
+    	   JPanel entrees = new JPanel();
+    	   JPanel boutons = new JPanel();
+    	   boutons.add(btnValider);
+    	   boutons.add(btnSupprimer);
+    	   entrees.add(labDate);
+    	   entrees.add(date);
+    	   entrees.add(labNumJoueur);
+    	   entrees.add(numero);
+    	   entrees.add(labNbQuestion);
+    	   entrees.add(nbQuestion);
+    	   interm.add(entrees);
+    	   interm.add(boutons);
+    	   JTabbedPane onglet = new JTabbedPane();
+           onglet.addTab("Ajouter / Supprimer", null, interm, "saisir un élément à ajouter à la base de données ou selectionner dans le tableau un/des éléments à supprimer.");
+    	   panSud.add(onglet);
+    	   this.add(panSud,BorderLayout.SOUTH);
+       }
 
 
 	@Override
