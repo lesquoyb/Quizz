@@ -18,4 +18,10 @@ public interface IFenetreJeu {
 	public void mauvaiseReponse();
 	
 	public void afficherSelection();
+	
+	public void victoire();
+	
+	public void defaite();
+	
+	public int getScore();
 }

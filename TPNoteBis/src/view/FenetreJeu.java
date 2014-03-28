@@ -1,13 +1,17 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Image;
 import java.sql.Connection;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,6 +41,7 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 	private JPanel panConteneurCentre;
 	private JPanel panelBas;
 	private CtrlFermeture ctrlFermeture;
+	private int scoreNecessaire;
 	
 	
 	public FenetreJeu(Connection connection,Joueur joueur){
@@ -52,7 +57,6 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 		labScore = new JLabel("Score: 0");
 		panelHaut = new JPanel(new FlowLayout());
 		panelCentre = new JPanel(new FlowLayout());
-		panelCentre.setBackground(Color.white);;
 		panelBas = new JPanel(new FlowLayout());
 		
 		
@@ -73,11 +77,10 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 		panRep.setLayout(new FlowLayout());
 		panRep.add(reponse);
 		panelCentre.add(panRep);
-		panelCentre.setPreferredSize(new Dimension(450,275));
+		panelCentre.setPreferredSize(new Dimension(600,200));
 		panelBas.add(valider);
 		panConteneurCentre= new JPanel(new FlowLayout());
 		panConteneurCentre.add(panelCentre);
-		panConteneurCentre.setBackground(Color.red);
 		panConteneurCentre.setPreferredSize(new Dimension(500,300));
 		this.setLayout(new BoxLayout(this.getContentPane(),BoxLayout.PAGE_AXIS));
 		this.add(panelHaut);
@@ -88,7 +91,7 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 		this.addWindowListener(ctrlFermeture);
 
 		afficherSelection();
-		this.setSize(new Dimension(500,500));
+		this.setSize(new Dimension(700,500));
 		this.setVisible(true);
 
 		this.setLocationRelativeTo(null);
@@ -98,7 +101,10 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 	 * Affiche le menu de selection des niveaux.
 	 */
 	public void afficherSelection(){
+		
 		score = 0;
+		majScore();
+
 		this.panelCentre.removeAll();
 		panConteneurCentre.setBackground(new Color(0xFFDA8C));
 		panelBas.setBackground(new Color(0xFFDA8C));
@@ -111,6 +117,9 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 		JRadioButton moyen = new JRadioButton("Moyen (15 questions, 21 points pour gagner) victoire = 3 , defaite = - 1");
 		JRadioButton difficile = new JRadioButton("Difficile (15 questions, 30 points pour gagner) victoire = 5 , defaite = - 5");
 
+		
+		Box panneauRadio = Box.createVerticalBox();
+		
 		facile.setBackground(new Color(0x8CC6D7));
 		moyen.setBackground(new Color(0x8CC6D7));
 		difficile.setBackground(new Color(0x8CC6D7));
@@ -123,18 +132,22 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 		grChoix.add(facile);
 		grChoix.add(moyen);
 		grChoix.add(difficile);
-		
+		panneauRadio.add(facile);
+		panneauRadio.add(moyen);
+		panneauRadio.add(difficile);
+		panneauRadio.setBackground(new Color(0x8CC6D7));
 		panelCentre.add(selection);
-		panelCentre.add(facile);
-		panelCentre.add(moyen);
-		panelCentre.add(difficile);
+		panelCentre.add(panneauRadio);
 
 		
 		valider.setActionCommand("difficulte");
 		this.getRootPane().setDefaultButton(valider);
-		panelCentre.setBackground(new Color(0xFFDA8C));
+		panelCentre.setBackground(new Color(0xFF5B2B));
 		this.panelCentre.repaint();		
 		this.panelCentre.validate();
+
+		panConteneurCentre.repaint();
+		panConteneurCentre.validate();
 	}
 	
 	public String getChoix(){
@@ -158,18 +171,26 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 		this.question.setText(q.getTexte());
 		this.reponse.setText("");
 		reponse.setPreferredSize(new Dimension(100,40));
-		
+		question.setBackground(new Color(0x8CC6D7));
+		question.setFont(new Font("Helvetica",Font.BOLD,15));
+
 		panelCentre.add(question);
 		JPanel panRep = new JPanel();
 		panRep.setLayout(new FlowLayout());
 		panRep.add(reponse);
+		panRep.setBackground(new Color(0x8CC6D7));
 		panelCentre.add(panRep);
 		reponse.requestFocus();
+		
+		
 		
 		valider.setActionCommand("valider"+numero);
 		panelCentre.setBackground(Color.white);
 		this.panelCentre.repaint();
 		this.panelCentre.validate();
+
+		panConteneurCentre.repaint();
+		panConteneurCentre.validate();
 	}
 
 	@Override
@@ -201,6 +222,45 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 	private void majScore(){
 		labScore.setText("Score: "+score);
 	}
+
+	@Override
+	public void victoire() {
+		this.panelCentre.removeAll();
+		panelCentre.add(new JLabel("Bravo vous avez gagné "));
+
+		panelCentre.setBackground(new Color(0xFF5B2B));
+		valider.setActionCommand("fin");
+
+		panConteneurCentre.repaint();
+		panConteneurCentre.validate();
+		this.panelCentre.repaint();
+		this.panelCentre.validate();
+	}
+
+	@Override
+	public void defaite() {
+
+		this.panelCentre.removeAll();
+		panelCentre.add(new JLabel("Vous avez perdu, retentez votre chance"));
+
+		panelCentre.setBackground(new Color(0xFF5B2B));
+		valider.setActionCommand("fin");
+
+		panConteneurCentre.repaint();
+		panConteneurCentre.validate();
+		this.panelCentre.repaint();
+		this.panelCentre.validate();
+	}
+
+	@Override
+	public int getScore() {
+		return score;
+	}
+	
+	
+	
+	
+	
 	
 	
 }

@@ -30,6 +30,7 @@ public class CtrlJeu implements ActionListener{
 	private Connection connection;
 	private Quizz quizzEnCours;
 	private SimpleDateFormat  format;
+	private int scoreNecessaire;
 	
 	public CtrlJeu(){
 		questionAPoser = new ArrayList<Question>();
@@ -49,6 +50,33 @@ public class CtrlJeu implements ActionListener{
 			String choix = vue.getChoix();
 			if (choix.equals("facile")){				
 				nbQuestionAPoser = 10;
+				scoreNecessaire =5; 
+				Date maintenant = new Date(new java.util.Date().getTime());
+				quizzEnCours = new Quizz(nbQuestionAPoser,maintenant,reponsesApportees,questionAPoser,joueur);
+				if (listeQuestions.size() < nbQuestionAPoser){
+					JOptionPane.showMessageDialog(null, "Il n'y a pas assez de questions dans la base de données");
+				}
+				else{
+					questionAPoser = questionAleatoire(listeQuestions, nbQuestionAPoser);
+					vue.poserQuestion(questionAPoser.get(0),0);
+				}
+			}
+			if (choix.equals("moyen")){				
+				nbQuestionAPoser = 15;
+				scoreNecessaire = 21;
+				Date maintenant = new Date(new java.util.Date().getTime());
+				quizzEnCours = new Quizz(nbQuestionAPoser,maintenant,reponsesApportees,questionAPoser,joueur);
+				if (listeQuestions.size() < nbQuestionAPoser){
+					JOptionPane.showMessageDialog(null, "Il n'y a pas assez de questions dans la base de données");
+				}
+				else{
+					questionAPoser = questionAleatoire(listeQuestions, nbQuestionAPoser);
+					vue.poserQuestion(questionAPoser.get(0),0);
+				}
+			}		
+			if (choix.equals("difficile")){				
+				nbQuestionAPoser = 15;
+				scoreNecessaire = 21;
 				Date maintenant = new Date(new java.util.Date().getTime());
 				quizzEnCours = new Quizz(nbQuestionAPoser,maintenant,reponsesApportees,questionAPoser,joueur);
 				if (listeQuestions.size() < nbQuestionAPoser){
@@ -84,8 +112,16 @@ public class CtrlJeu implements ActionListener{
 						listeItem.add(it);
 					}
 					quizz.insert(quizzEnCours,listeItem);
-				vue.afficherSelection();
+					if(vue.getScore() < scoreNecessaire){
+						vue.defaite();
+					}
+					else{
+						vue.victoire();
+					}
 			}
+		}
+		else if (action.equals("fin")){
+			vue.afficherSelection();
 		}
 	}
 
