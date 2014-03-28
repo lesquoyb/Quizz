@@ -48,7 +48,7 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 		controleur.setVue(this);
 		controleur.setConnection(connection);
 		
-		score = 0;
+		
 		labScore = new JLabel("Score: 0");
 		panelHaut = new JPanel(new FlowLayout());
 		panelCentre = new JPanel(new FlowLayout());
@@ -98,22 +98,41 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 	 * Affiche le menu de selection des niveaux.
 	 */
 	public void afficherSelection(){
+		score = 0;
 		this.panelCentre.removeAll();
+		panConteneurCentre.setBackground(new Color(0xFFDA8C));
+		panelBas.setBackground(new Color(0xFFDA8C));
+		panelHaut.setBackground(new Color(0xFFDA8C));
 		this.panelCentre.setLayout(new BoxLayout(panelCentre,BoxLayout.LINE_AXIS));
 		
 		JLabel selection = new JLabel("Selectionnez un mode de jeu: ");
 		grChoix = new ButtonGroup();
-		JRadioButton facile = new JRadioButton("Facile (10 question, temps illimité)");
+		JRadioButton facile = new JRadioButton("Facile (10 questions, 5 points pour gagner) victoire = 1");
+		JRadioButton moyen = new JRadioButton("Moyen (15 questions, 21 points pour gagner) victoire = 3 , defaite = - 1");
+		JRadioButton difficile = new JRadioButton("Difficile (15 questions, 30 points pour gagner) victoire = 5 , defaite = - 5");
+
+		facile.setBackground(new Color(0x8CC6D7));
+		moyen.setBackground(new Color(0x8CC6D7));
+		difficile.setBackground(new Color(0x8CC6D7));
+
 		facile.setActionCommand("facile");
+		moyen.setActionCommand("moyen");
+		difficile.setActionCommand("difficile");
+
 		facile.setSelected(true);
 		grChoix.add(facile);
+		grChoix.add(moyen);
+		grChoix.add(difficile);
 		
 		panelCentre.add(selection);
 		panelCentre.add(facile);
+		panelCentre.add(moyen);
+		panelCentre.add(difficile);
 
+		
 		valider.setActionCommand("difficulte");
 		this.getRootPane().setDefaultButton(valider);
-		panelCentre.setBackground(Color.white);
+		panelCentre.setBackground(new Color(0xFFDA8C));
 		this.panelCentre.repaint();		
 		this.panelCentre.validate();
 	}

@@ -31,6 +31,7 @@ public class FenetreAuthent extends JFrame implements IAuthent {
 	
 	public FenetreAuthent(Connection c){
 	
+		this.setTitle("Connection d'un joueur");
 		controleur = new CtrlAuthent();
 		controleur.setVue(this);
 		controleur.setConnection(c);
@@ -45,12 +46,17 @@ public class FenetreAuthent extends JFrame implements IAuthent {
 		saisieMdp.setPreferredSize(new Dimension(75, 40));
 		JPanel pan1 = new JPanel(new FlowLayout());
 		JPanel pan2 = new JPanel(new FlowLayout());
+		
 		pan1.add(labNom);
 		pan1.add(saisieNom);
 		pan2.add(labMdp);
 		pan2.add(saisieMdp);
 		
 		this.setLayout(new BoxLayout(this.getContentPane(),BoxLayout.PAGE_AXIS));
+		JLabel lab = new JLabel("Entrez votre nom et votre mot de passe pour commencer à jouer.");
+		JPanel pan = new JPanel();
+		pan.add(lab);
+		this.add(pan);
 		this.add(pan1);
 		this.add(pan2);
 		this.add(valider);
