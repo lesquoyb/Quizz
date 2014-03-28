@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import model.metier.Item;
 import model.metier.Joueur;
 
 public class ModelTableJoueur extends AbstractTableModel {

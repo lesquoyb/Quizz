@@ -7,9 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
 
 import model.metier.Joueur;
 
@@ -132,7 +131,7 @@ public class DAOJoueur extends DAO<Joueur> {
 	@Override
 	public void insert(Joueur objet) throws SQLException {
 		String requete = "INSERT INTO joueur (nom_joueur,passwd_joueur,mail_joueur) VALUES(?,?,?)";
-		PreparedStatement prep = connection.prepareStatement(requete,PreparedStatement.RETURN_GENERATED_KEYS);
+		PreparedStatement prep = connection.prepareStatement(requete,Statement.RETURN_GENERATED_KEYS);
 		prep.setString(1, objet.getNom());
 		prep.setString(2, objet.getPasswd());
 		prep.setString(3, objet.getMail());

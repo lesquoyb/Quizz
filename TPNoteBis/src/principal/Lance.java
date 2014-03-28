@@ -2,10 +2,7 @@ package principal;
 
 import java.sql.SQLException;
 
-import model.dao.MaConnection;
-import model.metier.Joueur;
 import view.FenetreConnection;
-import view.FenetreJeu;
 
 public class Lance {
 

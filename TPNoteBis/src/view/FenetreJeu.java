@@ -4,14 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Image;
 import java.sql.Connection;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -100,6 +97,7 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 	/**
 	 * Affiche le menu de selection des niveaux.
 	 */
+	@Override
 	public void afficherSelection(){
 		
 		score = 0;
@@ -150,6 +148,7 @@ public class FenetreJeu extends JFrame implements IFenetreJeu{
 		panConteneurCentre.validate();
 	}
 	
+	@Override
 	public String getChoix(){
 		return grChoix.getSelection().getActionCommand();
 	}

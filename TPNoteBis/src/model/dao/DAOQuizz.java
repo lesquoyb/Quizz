@@ -23,7 +23,7 @@ public class DAOQuizz extends DAO<Quizz>{
 	@Override
 	public void insert(Quizz objet) throws SQLException{
 		String requete = "INSERT INTO quizz (date_quizz,nb_questions_quizz,code_joueur) VALUES(?,?,?)";
-			PreparedStatement prep = connection.prepareStatement(requete,Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement prep = connection.prepareStatement(requete,java.sql.Statement.RETURN_GENERATED_KEYS);
 			prep.setDate(1, objet.getDate());
 			prep.setInt(2, objet.getNombreQuestion());
 			prep.setInt(3, objet.getJoueur().getCode());

@@ -1,11 +1,15 @@
 package controller;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 import model.dao.DAOJoueur;
 import model.dao.DAOQuestion;
@@ -89,9 +93,17 @@ public class CtrlRequetes implements ActionListener {
 					String reponseResultat = resultat.getReponse();
 					int numeroQuestion = i+1;
 					afficheResultat = afficheResultat+"Question "+numeroQuestion+" : "+texteResultat+"        Reponse : "+reponseResultat+"        Code : "+codeResultat+"\n";
+
 				}
 				vue.viderChamps();
-				JOptionPane.showMessageDialog(null, afficheResultat, "Liste des Questions trouvées", JOptionPane.INFORMATION_MESSAGE);
+				JTextPane labRep = new JTextPane();
+				labRep.setText(afficheResultat);
+				JScrollPane panneauReponses = new JScrollPane(labRep);
+				panneauReponses.setPreferredSize(new Dimension(800, 400));
+				labRep.setEnabled(false);
+				labRep.setDisabledTextColor(Color.black);
+				panneauReponses.setViewportView(labRep);
+				JOptionPane.showMessageDialog(null, panneauReponses, "Liste des Questions trouvées", JOptionPane.INFORMATION_MESSAGE);
 					
 					
 			}

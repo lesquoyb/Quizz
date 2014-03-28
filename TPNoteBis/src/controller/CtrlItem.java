@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
-import javax.swing.table.AbstractTableModel;
-
 import model.dao.DAOItem;
 import model.metier.Item;
 import view.interfaces.IPanelTableItem;

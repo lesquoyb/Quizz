@@ -8,9 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import model.dao.DAOItem;
 import model.dao.DAOQuestion;
-import model.metier.Item;
 import model.metier.Question;
 import view.interfaces.IPanelTableQuestion;
 import view.modelTable.ModelTableQuestion;

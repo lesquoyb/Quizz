@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,8 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
-
 import model.metier.Item;
 import view.interfaces.IPanelTableItem;
 import view.modelTable.ModelTableItem;
@@ -143,6 +140,7 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
 		return listeRetour;
 	}
 	
+	@Override
 	public String getCodeQuestion() {
 		return this.codeQuestion.getText();
 	}
@@ -156,10 +154,12 @@ public class PanelTableItem extends JPanel implements IPanelTableItem{
 	}
 
 
+	@Override
 	public String getCodeQuizz() {
 		return this.codeQuizz.getText();
 	}
 	
+	@Override
 	public String getReponseJoueur() {
 		return this.reponseJoueur.getText();
 	}

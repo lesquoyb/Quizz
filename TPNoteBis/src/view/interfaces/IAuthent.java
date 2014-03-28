@@ -1,7 +1,5 @@
 package view.interfaces;
 
-import java.sql.Connection;
-
 public interface IAuthent {
 
 	public String getNom();
