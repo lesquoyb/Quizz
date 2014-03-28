@@ -1,11 +1,11 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,7 +15,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.Border;
 
 import model.metier.Joueur;
 import model.metier.Question;
@@ -30,9 +29,7 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
 	private JScrollPane scrollPane1;
 	private JButton btnValider;
 	private JButton btnSupprimer;
-    private JPanel jPanel1;
     private JTextField nbQuestion;
-
     private JTextField numero;
     private JTextField date;
     private JLabel labNbQuestion;
@@ -56,7 +53,6 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
         tabQuizz.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPane1 = new JScrollPane();
         scrollPane1.setViewportView(tabQuizz);
-        jPanel1 = new JPanel();
         date = new JTextField();
         date.setPreferredSize(new Dimension(200,20));
         numero = new JTextField();
@@ -101,7 +97,11 @@ public class PanelTableQuizz extends JPanel implements IPanelTableQuizz{
     	   interm.add(boutons);
     	   JTabbedPane onglet = new JTabbedPane();
            onglet.addTab("Ajouter / Supprimer", null, interm, "saisir un élément à ajouter à la base de données ou selectionner dans le tableau un/des éléments à supprimer.");
-    	   panSud.add(onglet);
+    	   
+           panSud.add(onglet);
+           panCentre.setBackground(new Color(0x34393E));
+           tabQuizz.getTableHeader().setBackground(new Color(0xFF5B2B));
+           panSud.setBackground(new Color(0x34393E));
     	   this.add(panSud,BorderLayout.SOUTH);
        }
 

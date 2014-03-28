@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
@@ -99,6 +100,10 @@ public class PanelTableQuestion extends JPanel implements IPanelTableQuestion{
      	   JTabbedPane onglet = new JTabbedPane();
            onglet.addTab("Ajouter / Supprimer", null, interm, "saisir un élément à ajouter à la base de données ou selectionner dans le tableau un/des éléments à supprimer.");
      	   panSud.add(onglet);
+
+           panCentre.setBackground(new Color(0x34393E));
+           tabQuestion.getTableHeader().setBackground(new Color(0xFF5B2B));
+           panSud.setBackground(new Color(0x34393E));
      	   this.add(panSud,BorderLayout.SOUTH);
      	   this.setVisible(true);
         }

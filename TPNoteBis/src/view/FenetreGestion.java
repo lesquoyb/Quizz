@@ -77,7 +77,8 @@ public class FenetreGestion extends JFrame {
         panJoueur = new PanelTableJoueur(controleurJoueur);
         panQuestion = new PanelTableQuestion(controleurQuestion);
         panRequetes = new PanelRequetes(controleurRequetes);
-        
+		panQuizz.setBackground(new Color(0x34393E));
+
         
         controleurRequetes.setVue(panRequetes);
     	controleurQuestion.setVue(panQuestion);
@@ -87,13 +88,14 @@ public class FenetreGestion extends JFrame {
         
 
 
-
+        onglets.setBackground(new Color(0x8CC6D7));
         onglets.addTab("Quizz", null, panQuizz, "gestion des quizz");
         onglets.addTab("Items", null, panItem, "gestion des items");
         onglets.addTab("Joueurs", null, panJoueur, "gestion des joueurs");
         onglets.addTab("Questions", null, panQuestion, "gestion des questions");
         onglets.addTab("Requetes", null, panRequetes, "recherche dans la base");
-
+        
+       
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,11 +112,11 @@ public class FenetreGestion extends JFrame {
                 .addComponent(onglets)
                 .addContainerGap())
         );
-
+	
         onglets.getAccessibleContext().setAccessibleName("");
         onglets.getAccessibleContext().setAccessibleDescription("gestion des quizz");
 
-
+		
     	
         pack();
     }
