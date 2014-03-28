@@ -80,6 +80,8 @@ public class testDAOJoueur {
 		joueur.setCode(daoJoueur.get("Test","test").getCode());
 		assertTrue(daoJoueur.get("Test","test").equals(joueur));
 		daoJoueur.delete(joueur);
+		connection.setAutoCommit(true);
+		
 	}
 	
 	
@@ -112,6 +114,7 @@ public class testDAOJoueur {
 		joueur.setCode(daoJoueur.get("Test","test").getCode());
 		
 		daoJoueur.delete(joueur);
+		connection.setAutoCommit(true);
 		assertTrue(daoJoueur.getAll().size() == taille);
 		
 		
